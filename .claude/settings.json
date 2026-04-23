@@ -45,6 +45,11 @@
             "type": "command",
             "command": "bash .claude/hooks/detect-gaps.sh",
             "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/post-compact.sh",
+            "timeout": 10
           }
         ]
       }
@@ -102,18 +107,6 @@
           {
             "type": "command",
             "command": "bash .claude/hooks/pre-compact.sh",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "PostCompact": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash .claude/hooks/post-compact.sh",
             "timeout": 10
           }
         ]

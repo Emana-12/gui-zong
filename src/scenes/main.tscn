@@ -1,0 +1,269 @@
+[gd_scene format=3 uid="uid://b473237ktbgbr"]
+
+[ext_resource type="Script" uid="uid://ciy1ojx7nv540" path="res://scenes/main.gd" id="1_main"]
+[ext_resource type="Script" uid="uid://dacmgcf6iw8ww" path="res://core/player_controller.gd" id="2_player"]
+[ext_resource type="Script" uid="uid://c5mpokvcbkmps" path="res://core/camera_controller.gd" id="3_camera"]
+[ext_resource type="Script" uid="uid://c4p867jhem3xe" path="res://core/three_forms_combat.gd" id="4_forms"]
+[ext_resource type="Script" uid="uid://cy6y0yx5iesjx" path="res://core/combo_system.gd" id="5_combo"]
+[ext_resource type="Script" uid="uid://b7ihaxjyltxl" path="res://core/light_trail_system.gd" id="6_trail"]
+[ext_resource type="Script" uid="uid://drnpbqm4l0m5p" path="res://core/hit_feedback_system.gd" id="7_feedback"]
+[ext_resource type="Script" uid="uid://b5gh64h3d4t6r" path="res://core/arena_wave_system.gd" id="8_wave"]
+[ext_resource type="Script" uid="uid://b5krhvmlgxrgp" path="res://core/enemy_system.gd" id="9_enemy"]
+[ext_resource type="Script" uid="uid://cxsgfy87i7tbt" path="res://core/physics_collision_system.gd" id="10_physics"]
+[ext_resource type="Script" uid="uid://twen5vvr7jqg" path="res://core/tuning_metrics.gd" id="11_metrics"]
+[ext_resource type="Script" uid="uid://bnokvxeyl2s5t" path="res://core/audio_manager.gd" id="12_audio"]
+[ext_resource type="Script" uid="uid://35wsx4bsh36a" path="res://ui/battle_hud.gd" id="13_hud"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_player"]
+albedo_color = Color(0.9, 0.9, 0.9, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_player"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ground"]
+size = Vector3(40, 0.1, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
+albedo_color = Color(0.15, 0.15, 0.2, 1)
+roughness = 0.9
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+size = Vector2(40, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_n"]
+size = Vector3(40, 4, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_s"]
+size = Vector3(40, 4, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_e"]
+size = Vector3(0.5, 4, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_w"]
+size = Vector3(0.5, 4, 40)
+
+[node name="MainScene" type="Node" unique_id=721649436]
+script = ExtResource("1_main")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1612320743]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 5, 0)
+light_energy = 1.2
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=859096966 groups=["player"]]
+unique_name_in_owner = true
+script = ExtResource("2_player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1749209852]
+shape = SubResource("CapsuleShape3D_player")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=356770236]
+material_override = SubResource("StandardMaterial3D_player")
+mesh = SubResource("CapsuleMesh_player")
+
+[node name="CameraController" type="Node3D" parent="." unique_id=1186678246]
+unique_name_in_owner = true
+script = ExtResource("3_camera")
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1228020314]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=342773725]
+shape = SubResource("BoxShape3D_ground")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1344841629]
+material_override = SubResource("StandardMaterial3D_ground")
+mesh = SubResource("PlaneMesh_ground")
+
+[node name="WallNorth" type="StaticBody3D" parent="." unique_id=1471307559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 20)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallNorth" unique_id=1932746533]
+shape = SubResource("BoxShape3D_wall_n")
+
+[node name="WallSouth" type="StaticBody3D" parent="." unique_id=1959997811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -20)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallSouth" unique_id=160921141]
+shape = SubResource("BoxShape3D_wall_s")
+
+[node name="WallEast" type="StaticBody3D" parent="." unique_id=356691805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallEast" unique_id=984464702]
+shape = SubResource("BoxShape3D_wall_e")
+
+[node name="WallWest" type="StaticBody3D" parent="." unique_id=959437418]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallWest" unique_id=1198716696]
+shape = SubResource("BoxShape3D_wall_w")
+
+[node name="EnemyContainer" type="Node3D" parent="." unique_id=347162408]
+
+[node name="ThreeFormsCombat" type="Node" parent="." unique_id=1532184555]
+unique_name_in_owner = true
+script = ExtResource("4_forms")
+
+[node name="ComboSystem" type="Node" parent="." unique_id=1055782523]
+unique_name_in_owner = true
+script = ExtResource("5_combo")
+
+[node name="LightTrailSystem" type="Node" parent="." unique_id=2019164384]
+unique_name_in_owner = true
+script = ExtResource("6_trail")
+
+[node name="HitFeedbackSystem" type="Node3D" parent="." unique_id=501134202]
+unique_name_in_owner = true
+script = ExtResource("7_feedback")
+
+[node name="PhysicsCollisionSystem" type="Node" parent="." unique_id=1720300489]
+unique_name_in_owner = true
+script = ExtResource("10_physics")
+
+[node name="ArenaWaveSystem" type="Node" parent="." unique_id=1535457198]
+unique_name_in_owner = true
+script = ExtResource("8_wave")
+
+[node name="EnemySystem" type="Node" parent="." unique_id=72740854]
+unique_name_in_owner = true
+script = ExtResource("9_enemy")
+
+[node name="AudioManager" type="Node" parent="." unique_id=632520679]
+script = ExtResource("12_audio")
+
+[node name="TuningMetrics" type="Node" parent="." unique_id=337753525]
+unique_name_in_owner = true
+script = ExtResource("11_metrics")
+
+[node name="BattleHUD" type="CanvasLayer" parent="." unique_id=938662686]
+unique_name_in_owner = true
+layer = 10
+script = ExtResource("13_hud")
+
+[node name="HUDRoot" type="Control" parent="BattleHUD" unique_id=1577508793]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InkDrops" type="HBoxContainer" parent="BattleHUD/HUDRoot" unique_id=299956181]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 0
+
+[node name="InkDrop1" type="ColorRect" parent="BattleHUD/HUDRoot/InkDrops" unique_id=454831556]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+color = Color(0.1, 0.1, 0.18, 1)
+
+[node name="InkDrop2" type="ColorRect" parent="BattleHUD/HUDRoot/InkDrops" unique_id=1618801562]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+color = Color(0.1, 0.1, 0.18, 1)
+
+[node name="InkDrop3" type="ColorRect" parent="BattleHUD/HUDRoot/InkDrops" unique_id=766365756]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+color = Color(0.1, 0.1, 0.18, 1)
+
+[node name="ComboLabel" type="Label" parent="BattleHUD/HUDRoot" unique_id=1157976837]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 20.0
+offset_right = 50.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+
+[node name="InkDotsContainer" type="HBoxContainer" parent="BattleHUD/HUDRoot" unique_id=900176039]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 60.0
+offset_right = 120.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FormIndicators" type="HBoxContainer" parent="BattleHUD/HUDRoot" unique_id=1908943375]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -180.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 0
+
+[node name="FormIndicatorYou" type="Label" parent="BattleHUD/HUDRoot/FormIndicators" unique_id=1678846934]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "游"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FormIndicatorZuan" type="Label" parent="BattleHUD/HUDRoot/FormIndicators" unique_id=431623573]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "钻"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FormIndicatorRao" type="Label" parent="BattleHUD/HUDRoot/FormIndicators" unique_id=1102758897]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "绕"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChargeRing" type="Control" parent="BattleHUD/HUDRoot" unique_id=629576963]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WaveCount" type="Label" parent="BattleHUD/HUDRoot" unique_id=1320438697]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 140.0
+offset_bottom = 90.0
+grow_horizontal = 0
+
+[node name="MenuLayer" type="Control" parent="BattleHUD" unique_id=1993457884]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

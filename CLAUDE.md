@@ -1,3 +1,8 @@
+### 重要！###
+当前是powershell环境，遇到bash需要自动转为powershell命令。
+请确保在与我交流时始终使用中文。
+所有路径已经确定，无需再向我询问任何问题，直接按推荐路径进行操作即可。
+在完成上一个任务后，自动开启下一个任务，不要再询问我是否继续
 # Claude Code Game Studios -- Game Studio Agent Architecture
 
 Indie game development managed through 48 coordinated Claude Code subagents.
@@ -5,11 +10,11 @@ Each agent owns a specific domain, enforcing separation of concerns and quality.
 
 ## Technology Stack
 
-- **Engine**: [CHOOSE: Godot 4 / Unity / Unreal Engine 5]
-- **Language**: [CHOOSE: GDScript / C# / C++ / Blueprint]
+- **Engine**: Godot 4.6.2
+- **Language**: GDScript
 - **Version Control**: Git with trunk-based development
-- **Build System**: [SPECIFY after choosing engine]
-- **Asset Pipeline**: [SPECIFY after choosing engine]
+- **Build System**: SCons (engine), Godot Export Templates
+- **Asset Pipeline**: Godot Import System + custom resource pipeline
 
 > **Note**: Engine-specialist agents exist for Godot, Unity, and Unreal with
 > dedicated sub-specialists. Use the set matching your engine.

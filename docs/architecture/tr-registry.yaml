@@ -25,32 +25,746 @@
 # STATUS VALUES: active | deprecated | superseded-by: TR-[system]-NNN
 
 version: 1
-last_updated: ""
+last_updated: "2026-04-21"
 
-requirements: []
+requirements:
 
-# --- EXAMPLE ENTRIES (remove when first real entries are added) ---
-#
-# - id: TR-combat-001
-#   system: combat
-#   gdd: design/gdd/combat-system.md
-#   requirement: "Player takes damage from enemies based on attack power minus defence"
-#   created: 2026-03-10
-#   revised: ""
-#   status: active
-#
-# - id: TR-combat-002
-#   system: combat
-#   gdd: design/gdd/combat-system.md
-#   requirement: "Combo window timing is 0.4 seconds between hits"
-#   created: 2026-03-10
-#   revised: "2026-04-01"
-#   status: active
-#
-# - id: TR-combat-003
-#   system: combat
-#   gdd: design/gdd/combat-system.md
-#   requirement: "Old damage formula using raw stats"
-#   created: 2026-03-10
-#   revised: ""
-#   status: superseded-by: TR-combat-001
+  # ==================== Game State Manager ====================
+
+  - id: TR-GSM-001
+    system: game-state-manager
+    gdd: design/gdd/game-state-manager.md
+    requirement: "FSM with 5 states: TITLE, COMBAT, INTERMISSION, DEATH, RESTART"
+    adr: adr-0001-game-state-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-GSM-002
+    system: game-state-manager
+    gdd: design/gdd/game-state-manager.md
+    requirement: "state_changed signal broadcast on every state transition"
+    adr: adr-0001-game-state-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-GSM-003
+    system: game-state-manager
+    gdd: design/gdd/game-state-manager.md
+    requirement: "Transition matrix validation — reject invalid state changes"
+    adr: adr-0001-game-state-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-GSM-004
+    system: game-state-manager
+    gdd: design/gdd/game-state-manager.md
+    requirement: "Autoload singleton pattern — GameStateManager available globally"
+    adr: adr-0001-game-state-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-GSM-005
+    system: game-state-manager
+    gdd: design/gdd/game-state-manager.md
+    requirement: "Independent pause control — separate from game state"
+    adr: adr-0001-game-state-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-GSM-006
+    system: game-state-manager
+    gdd: design/gdd/game-state-manager.md
+    requirement: "Web tab background auto-pause"
+    adr: adr-0001-game-state-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Input System ====================
+
+  - id: TR-INPUT-001
+    system: input-system
+    gdd: design/gdd/input-system.md
+    requirement: "Input buffer with cap 1 and 6-frame window"
+    adr: adr-0002-input-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-INPUT-002
+    system: input-system
+    gdd: design/gdd/input-system.md
+    requirement: "_input() for web input capture — handle _unhandled_input for web compatibility"
+    adr: adr-0002-input-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-INPUT-003
+    system: input-system
+    gdd: design/gdd/input-system.md
+    requirement: "Action group enable/disable — modular input context switching"
+    adr: adr-0002-input-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-INPUT-004
+    system: input-system
+    gdd: design/gdd/input-system.md
+    requirement: "Query interface (is_action_pressed, is_action_just_pressed, get_move_direction)"
+    adr: adr-0002-input-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-INPUT-005
+    system: input-system
+    gdd: design/gdd/input-system.md
+    requirement: "Multiple simultaneous input handling — keyboard + gamepad at same time"
+    adr: adr-0002-input-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Shader/Rendering ====================
+
+  - id: TR-SHADER-001
+    system: shader-rendering
+    gdd: design/gdd/shader-rendering.md
+    requirement: "3 shader types: character, environment, trail"
+    adr: adr-0003-rendering-pipeline-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-SHADER-002
+    system: shader-rendering
+    gdd: design/gdd/shader-rendering.md
+    requirement: "Shared material pool with ≤15 instances"
+    adr: adr-0003-rendering-pipeline-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-SHADER-003
+    system: shader-rendering
+    gdd: design/gdd/shader-rendering.md
+    requirement: "WebGL 2.0 fallback — all shaders must compile under WebGL 2.0"
+    adr: adr-0003-rendering-pipeline-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-SHADER-004
+    system: shader-rendering
+    gdd: design/gdd/shader-rendering.md
+    requirement: "Stepped lighting (non-PBR) — cel-shading toon ramp"
+    adr: adr-0003-rendering-pipeline-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-SHADER-005
+    system: shader-rendering
+    gdd: design/gdd/shader-rendering.md
+    requirement: "≤2 post-processing passes maximum"
+    adr: adr-0003-rendering-pipeline-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-SHADER-006
+    system: shader-rendering
+    gdd: design/gdd/shader-rendering.md
+    requirement: "Query interface (get_material, create_trail_material)"
+    adr: adr-0003-rendering-pipeline-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-SHADER-007
+    system: shader-rendering
+    gdd: design/gdd/shader-rendering.md
+    requirement: "Auto-degradation thresholds — fps<20 ink_steps=2"
+    adr: adr-0003-rendering-pipeline-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Audio System ====================
+
+  - id: TR-AUDIO-001
+    system: audio-system
+    gdd: design/gdd/audio-system.md
+    requirement: "3 audio buses: Master, SFX, BGM"
+    adr: adr-0004-audio-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-AUDIO-002
+    system: audio-system
+    gdd: design/gdd/audio-system.md
+    requirement: "SFX preload constraints: <2MB total, <30 files"
+    adr: adr-0004-audio-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-AUDIO-003
+    system: audio-system
+    gdd: design/gdd/audio-system.md
+    requirement: "Max 8 concurrent sounds, 3 per effect type"
+    adr: adr-0004-audio-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-AUDIO-004
+    system: audio-system
+    gdd: design/gdd/audio-system.md
+    requirement: "BGM streaming — load from disk, not memory"
+    adr: adr-0004-audio-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-AUDIO-005
+    system: audio-system
+    gdd: design/gdd/audio-system.md
+    requirement: "Web AudioContext initialization — handle autoplay policy"
+    adr: adr-0004-audio-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Player Controller ====================
+
+  - id: TR-PLR-001
+    system: player-controller
+    gdd: design/gdd/player-controller.md
+    requirement: "CharacterBody3D with constant 5.0 m/s speed, no acceleration curve"
+    adr: adr-0010-player-controller-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-PLR-002
+    system: player-controller
+    gdd: design/gdd/player-controller.md
+    requirement: "Dodge: 3.0m distance in 0.2s, 0.15s invincibility, 0.5s cooldown"
+    adr: adr-0010-player-controller-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-PLR-003
+    system: player-controller
+    gdd: design/gdd/player-controller.md
+    requirement: "HP=3, 1 damage per hit, 0.5s hit stun with invincibility, no recovery"
+    adr: adr-0010-player-controller-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-PLR-004
+    system: player-controller
+    gdd: design/gdd/player-controller.md
+    requirement: "Auto-face nearest enemy instantly (no slerp), updated every frame"
+    adr: adr-0010-player-controller-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-PLR-005
+    system: player-controller
+    gdd: design/gdd/player-controller.md
+    requirement: "get_dodge_success_rate() API for skill progression tracking"
+    adr: adr-0010-player-controller-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-PLR-006
+    system: player-controller
+    gdd: design/gdd/player-controller.md
+    requirement: "Web per-frame position update — all movement calculations in _physics_process"
+    adr: adr-0010-player-controller-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Camera System ====================
+
+  - id: TR-CAM-001
+    system: camera-system
+    gdd: design/gdd/camera-system.md
+    requirement: "3/4 overhead camera at 45° angle"
+    adr: adr-0012-camera-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-CAM-002
+    system: camera-system
+    gdd: design/gdd/camera-system.md
+    requirement: "Height 6.0m, distance 8.0m, lerp factor 5.0"
+    adr: adr-0012-camera-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-CAM-003
+    system: camera-system
+    gdd: design/gdd/camera-system.md
+    requirement: "FOV zoom 60→75° on myriad trigger"
+    adr: adr-0012-camera-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-CAM-004
+    system: camera-system
+    gdd: design/gdd/camera-system.md
+    requirement: "Camera3D per-frame following — smooth lerp to player position"
+    adr: adr-0012-camera-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-CAM-005
+    system: camera-system
+    gdd: design/gdd/camera-system.md
+    requirement: "State-dependent camera behavior (combat vs intermission)"
+    adr: adr-0012-camera-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Physics Collision ====================
+
+  - id: TR-PHYSICS-001
+    system: physics-collision
+    gdd: design/gdd/physics-collision.md
+    requirement: "6 collision layers: Player, Enemy, PlayerHitbox, EnemyHitbox, Environment, Trigger"
+    adr: adr-0005-physics-collision-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-PHYSICS-002
+    system: physics-collision
+    gdd: design/gdd/physics-collision.md
+    requirement: "Hitbox/hurtbox separation — Area3D for overlap detection"
+    adr: adr-0005-physics-collision-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-PHYSICS-003
+    system: physics-collision
+    gdd: design/gdd/physics-collision.md
+    requirement: "Hitbox pooling with ≤18 active hitboxes"
+    adr: adr-0005-physics-collision-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-PHYSICS-004
+    system: physics-collision
+    gdd: design/gdd/physics-collision.md
+    requirement: "ShapeCast3D + RayCast3D for advanced collision queries"
+    adr: adr-0005-physics-collision-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-PHYSICS-005
+    system: physics-collision
+    gdd: design/gdd/physics-collision.md
+    requirement: "Web performance fallback roadmap — 4-layer degradation strategy"
+    adr: adr-0005-physics-collision-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Hit Judgment ====================
+
+  - id: TR-HIT-001
+    system: hit-judgment
+    gdd: design/gdd/hit-judgment.md
+    requirement: "HitResult struct with 7 fields: attacker, target, sword_form, damage, hit_position, hit_normal, material_type"
+    adr: adr-0011-hit-judgment-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-HIT-002
+    system: hit-judgment
+    gdd: design/gdd/hit-judgment.md
+    requirement: "Deduplication mechanism — prevent double-hit on same collision"
+    adr: adr-0011-hit-judgment-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-HIT-003
+    system: hit-judgment
+    gdd: design/gdd/hit-judgment.md
+    requirement: "Invincibility check + self-hit prevention"
+    adr: adr-0011-hit-judgment-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-HIT-004
+    system: hit-judgment
+    gdd: design/gdd/hit-judgment.md
+    requirement: "Damage calculation pipeline — form-specific damage formulas"
+    adr: adr-0011-hit-judgment-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-HIT-005
+    system: hit-judgment
+    gdd: design/gdd/hit-judgment.md
+    requirement: "hit_landed signal broadcast to all downstream systems"
+    adr: adr-0011-hit-judgment-architecture.md
+ created: "2026-04-21"
+    status: active
+
+  # ==================== Three Forms Combat ====================
+
+  - id: TR-COMBAT-001
+    system: three-forms-combat
+    gdd: design/gdd/three-forms-combat.md
+    requirement: "4-state FSM: IDLE, EXEC, RECOVER, COOLDOWN"
+    adr: adr-0006-three-forms-combat-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-COMBAT-002
+    system: three-forms-combat
+    gdd: design/gdd/three-forms-combat.md
+    requirement: "3 forms with distinct parameters: 游剑式, 钻剑式, 绕剑式"
+    adr: adr-0006-three-forms-combat-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-COMBAT-003
+    system: three-forms-combat
+    gdd: design/gdd/three-forms-combat.md
+    requirement: "Independent cooldown per form type"
+    adr: adr-0006-three-forms-combat-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-COMBAT-004
+    system: three-forms-combat
+    gdd: design/gdd/three-forms-combat.md
+    requirement: "DPS balance targets: 游1.67, 钻2.50, 绕2.35"
+    adr: adr-0006-three-forms-combat-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-COMBAT-005
+    system: three-forms-combat
+    gdd: design/gdd/three-forms-combat.md
+    requirement: "form_activated and form_finished signals for downstream systems"
+    adr: adr-0006-three-forms-combat-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Enemy System ====================
+
+  - id: TR-ENEMY-001
+    system: enemy-system
+    gdd: design/gdd/enemy-system.md
+    requirement: "5 enemy types with distinct stats and behaviors"
+    adr: adr-0007-enemy-ai-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-ENEMY-002
+    system: enemy-system
+    gdd: design/gdd/enemy-system.md
+    requirement: "6-state AI FSM: IDLE, APPROACH, ATTACK, RETREAT, STUNNED, DEAD"
+    adr: adr-0007-enemy-ai-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-ENEMY-003
+    system: enemy-system
+    gdd: design/gdd/enemy-system.md
+    requirement: "Max 10 active enemies on screen simultaneously"
+    adr: adr-0007-enemy-ai-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-ENEMY-004
+    system: enemy-system
+    gdd: design/gdd/enemy-system.md
+    requirement: "spawn_enemy() and kill_all() interface for wave system"
+    adr: adr-0007-enemy-ai-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-ENEMY-005
+    system: enemy-system
+    gdd: design/gdd/enemy-system.md
+    requirement: "enemy_died signal for scoring and wave tracking"
+    adr: adr-0007-enemy-ai-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Light Trail System ====================
+
+  - id: TR-TRAIL-001
+    system: light-trail
+    gdd: design/gdd/light-trail-system.md
+    requirement: "MeshInstance3D + ImmediateMesh for trail rendering"
+    adr: adr-0008-light-trail-rendering-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-TRAIL-002
+    system: light-trail
+    gdd: design/gdd/light-trail-system.md
+    requirement: "Trail pooling with max 50 active trail segments"
+    adr: adr-0008-light-trail-rendering-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-TRAIL-003
+    system: light-trail
+    gdd: design/gdd/light-trail-system.md
+    requirement: "Shared material: 3 materials per form type (游/钻/绕)"
+    adr: adr-0008-light-trail-rendering-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-TRAIL-004
+    system: light-trail
+    gdd: design/gdd/light-trail-system.md
+    requirement: "Per-form trail parameters: width, fade time, color"
+    adr: adr-0008-light-trail-rendering-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-TRAIL-005
+    system: light-trail
+    gdd: design/gdd/light-trail-system.md
+    requirement: "Myriad batch rendering — 50 trails in 1 draw call"
+    adr: adr-0008-light-trail-rendering-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Combo/Myriad Swords ====================
+
+  - id: TR-COMBO-001
+    system: combo-myriad
+    gdd: design/gdd/combo-myriad-swords.md
+    requirement: "Combo timeout of 3 seconds — counter resets if no hit within window"
+    adr: adr-0009-combo-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-COMBO-002
+    system: combo-myriad
+    gdd: design/gdd/combo-myriad-swords.md
+    requirement: "Charge 10 hits for myriad, auto-trigger at 20 hits"
+    adr: adr-0009-combo-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-COMBO-003
+    system: combo-myriad
+    gdd: design/gdd/combo-myriad-swords.md
+    requirement: "Myriad formulas: trail count = 5 + combo, damage multiplier, range scaling"
+    adr: adr-0009-combo-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-COMBO-004
+    system: combo-myriad
+    gdd: design/gdd/combo-myriad-swords.md
+    requirement: "Different form hit = +1 combo (form switching rewards)"
+    adr: adr-0009-combo-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-COMBO-005
+    system: combo-myriad
+    gdd: design/gdd/combo-myriad-swords.md
+    requirement: "combo_changed and myriad_triggered signals"
+    adr: adr-0009-combo-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Hit Feedback ====================
+
+  - id: TR-FBK-001
+    system: hit-feedback
+    gdd: design/gdd/hit-feedback.md
+    requirement: "Material reactions: gold/wood/ink/shock particle effects"
+    adr: adr-0013-hit-feedback-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-FBK-002
+    system: hit-feedback
+    gdd: design/gdd/hit-feedback.md
+    requirement: "Hit stop formula: 2 + floor(damage/2) frames"
+    adr: adr-0013-hit-feedback-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-FBK-003
+    system: hit-feedback
+    gdd: design/gdd/hit-feedback.md
+    requirement: "Max 4 draw calls per frame for feedback effects"
+    adr: adr-0013-hit-feedback-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-FBK-004
+    system: hit-feedback
+    gdd: design/gdd/hit-feedback.md
+    requirement: "Low-fps hit stop reduction — scale duration inversely with frame rate"
+    adr: adr-0013-hit-feedback-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== HUD/UI ====================
+
+  - id: TR-HUD-001
+    system: hud-ui
+    gdd: design/gdd/hud-ui-system.md
+    requirement: "HUD elements: health, combo, form, charge, wave indicators"
+    adr: adr-0015-hud-ui-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-HUD-002
+    system: hud-ui
+    gdd: design/gdd/hud-ui-system.md
+    requirement: "State-dependent HUD switching — show/hide based on game state"
+    adr: adr-0015-hud-ui-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-HUD-003
+    system: hud-ui
+    gdd: design/gdd/hud-ui-system.md
+    requirement: "Auto-fade: 3 seconds idle → 0.3 alpha"
+    adr: adr-0015-hud-ui-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-HUD-004
+    system: hud-ui
+    gdd: design/gdd/hud-ui-system.md
+    requirement: "Menu stack system — push/pop menu screens"
+    adr: adr-0015-hud-ui-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-HUD-005
+    system: hud-ui
+    gdd: design/gdd/hud-ui-system.md
+    requirement: "Web responsive anchoring — adapt to different viewport sizes"
+    adr: adr-0015-hud-ui-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Arena Wave System ====================
+
+  - id: TR-WAVE-001
+    system: arena-wave
+    gdd: design/gdd/arena-wave-system.md
+    requirement: "Scaling formula: enemy_count = 2 + floor(wave_number * 0.8)"
+    adr: adr-0014-arena-wave-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-WAVE-002
+    system: arena-wave
+    gdd: design/gdd/arena-wave-system.md
+    requirement: "Max 10 active enemies + spawn queue for overflow"
+    adr: adr-0014-arena-wave-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-WAVE-003
+    system: arena-wave
+    gdd: design/gdd/arena-wave-system.md
+    requirement: "Enemy type unlock schedule — new types appear at specific waves"
+    adr: adr-0014-arena-wave-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-WAVE-004
+    system: arena-wave
+    gdd: design/gdd/arena-wave-system.md
+    requirement: "Wave lifecycle + INTERMISSION state between waves"
+    adr: adr-0014-arena-wave-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-WAVE-005
+    system: arena-wave
+    gdd: design/gdd/arena-wave-system.md
+    requirement: "wave_completed signal for scoring and state transitions"
+    adr: adr-0014-arena-wave-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Level/Scene Manager ====================
+
+  - id: TR-LSM-001
+    system: level-scene
+    gdd: design/gdd/level-scene-manager.md
+    requirement: "2 arena PackedScenes preloaded at startup"
+    adr: adr-0016-level-scene-manager-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-LSM-002
+    system: level-scene
+    gdd: design/gdd/level-scene-manager.md
+    requirement: "Preload + spawn points via Marker3D nodes"
+    adr: adr-0016-level-scene-manager-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-LSM-003
+    system: level-scene
+    gdd: design/gdd/level-scene-manager.md
+    requirement: "Fade transition between scenes (canvas modulate)"
+    adr: adr-0016-level-scene-manager-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-LSM-004
+    system: level-scene
+    gdd: design/gdd/level-scene-manager.md
+    requirement: "Web memory release via queue_free on scene unload"
+    adr: adr-0016-level-scene-manager-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Scoring System ====================
+
+  - id: TR-SCR-001
+    system: scoring
+    gdd: design/gdd/scoring-system.md
+    requirement: "Best wave, best combo, best myriad count tracking"
+    adr: adr-0017-scoring-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-SCR-002
+    system: scoring
+    gdd: design/gdd/scoring-system.md
+    requirement: "JSON + localStorage persistence for Web platform"
+    adr: adr-0017-scoring-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-SCR-003
+    system: scoring
+    gdd: design/gdd/scoring-system.md
+    requirement: "Cross-system signal collection (combo, wave, enemy_died)"
+    adr: adr-0017-scoring-system-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  # ==================== Skill Progression ====================
+
+  - id: TR-SKL-001
+    system: skill-progression
+    gdd: design/gdd/skill-progression.md
+    requirement: "3 operation metrics: dodge success rate, form switch frequency, damage avoidance"
+    adr: adr-0018-skill-progression-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-SKL-002
+    system: skill-progression
+    gdd: design/gdd/skill-progression.md
+    requirement: "Last 10 runs trend data for skill growth visualization"
+    adr: adr-0018-skill-progression-architecture.md
+    created: "2026-04-21"
+    status: active
+
+  - id: TR-SKL-003
+    system: skill-progression
+    gdd: design/gdd/skill-progression.md
+    requirement: "JSON + localStorage persistence for Web platform"
+    adr: adr-0018-skill-progression-architecture.md
+    created: "2026-04-21"
+    status: active
