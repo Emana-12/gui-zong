@@ -207,9 +207,11 @@ func _build_test_attribute(script: GDScript, fd: GdFunctionDescriptor) -> TestCa
 static func load_with_disabled_warnings(resource_path: String) -> Script:
 	# grap current level
 	var unsafe_method_access: Variant = ProjectSettings.get_setting("debug/gdscript/warnings/unsafe_method_access")
+	var inferred_declaration: Variant = ProjectSettings.get_setting("debug/gdscript/warnings/inferred_declaration")
 
 	# disable and load the script
 	ProjectSettings.set_setting("debug/gdscript/warnings/unsafe_method_access", 0)
+	ProjectSettings.set_setting("debug/gdscript/warnings/inferred_declaration", 0)
 
 	var script: Script = (
 		GdUnitTestResourceLoader.load_gd_script(resource_path) if resource_path.ends_with("resource")
@@ -217,6 +219,7 @@ static func load_with_disabled_warnings(resource_path: String) -> Script:
 
 	# restore
 	ProjectSettings.set_setting("debug/gdscript/warnings/unsafe_method_access", unsafe_method_access)
+	ProjectSettings.set_setting("debug/gdscript/warnings/inferred_declaration", inferred_declaration)
 	return script
 
 
