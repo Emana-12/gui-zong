@@ -23,22 +23,16 @@ jobs:
         with:
           version: 4.6.2
 
-      - name: Verify Godot
-        run: godot --version
-
       - name: Import project
         run: |
           cd src
           godot --headless --import 2>&1 || true
 
-      - name: Run tests
+      - name: Run GdUnit4 Tests
         run: |
           cd src
-          godot --headless --script addons/gdUnit4/bin/GdUnitCmdTool.gd \
-            --add "tests/unit" \
-            --add "tests/integration" \
-            --report-directory reports \
-            --report-name test-results 2>&1
+          chmod +x addons/gdUnit4/runtest.sh
+          GODOT_BIN=$(which godot) bash addons/gdUnit4/runtest.sh --add tests/unit --add tests/integration --report-directory reports --report-name test-results 2>&1
         continue-on-error: true
 
       - name: Upload Test Results
