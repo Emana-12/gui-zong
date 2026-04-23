@@ -76,3 +76,7 @@ myriad_trigger={
 [rendering]
 
 rendering_driver.windows="d3d12"
+
+[gdscript]
+
+warnings/inferred_declaration=0
