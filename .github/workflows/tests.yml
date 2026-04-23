@@ -23,15 +23,19 @@ jobs:
         with:
           version: 4.6.2
 
+      - name: Install Xvfb
+        run: sudo apt-get install -y xvfb
+
       - name: Import project
         run: |
           cd src
-          godot --headless --import 2>&1 || true
+          xvfb-run godot --headless --import 2>&1 || true
 
       - name: Run GdUnit4 Tests
         run: |
           cd src
-          godot --headless --path . -s res://addons/gdUnit4/bin/GdUnitCmdTool.gd -a tests/unit -a tests/integration -rd reports 2>&1
+          chmod +x addons/gdUnit4/runtest.sh
+          GODOT_BIN=$(which godot) xvfb-run bash addons/gdUnit4/runtest.sh -a tests/unit -a tests/integration -rd reports 2>&1
 
       - name: Upload Test Results
         if: always()
