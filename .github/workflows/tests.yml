@@ -31,8 +31,7 @@ jobs:
       - name: Run GdUnit4 Tests
         run: |
           cd src
-          chmod +x addons/gdUnit4/runtest.sh
-          GODOT_BIN=$(which godot) bash addons/gdUnit4/runtest.sh -a tests/unit -a tests/integration -rd reports 2>&1
+          godot --headless --path . -s res://addons/gdUnit4/bin/GdUnitCmdTool.gd -a tests/unit -a tests/integration -rd reports 2>&1
 
       - name: Upload Test Results
         if: always()
