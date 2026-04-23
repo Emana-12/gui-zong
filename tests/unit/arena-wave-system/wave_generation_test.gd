@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## wave_generation_test.gd — ArenaWaveSystem 波次生成测试
 ##
 ## 覆盖: 波次难度公式、敌人类型解锁、加权随机、生成队列

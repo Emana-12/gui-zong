@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## 模拟 GameStateManager — 仅用于测试
 ##
 ## 提供 state_changed 信号和 get_current_state() 方法，

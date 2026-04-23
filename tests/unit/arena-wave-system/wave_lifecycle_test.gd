@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## wave_lifecycle_test.gd — ArenaWaveSystem 波次生命周期测试
 ##
 ## 覆盖: wave_started/wave_completed/intermission_started 信号、

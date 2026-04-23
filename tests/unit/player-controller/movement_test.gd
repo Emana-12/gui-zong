@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## PlayerController — 移动与自动朝向测试
 ##
 ## 覆盖 Story 001 的全部 4 个 Acceptance Criteria:

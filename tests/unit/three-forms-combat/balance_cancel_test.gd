@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## balance_cancel_test.gd — ThreeFormsCombat DPS 均衡与死亡取消测试
 ##
 ## 覆盖 story-003-balance-cancel 全部 2 个 AC

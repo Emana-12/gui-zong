@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # SPDX-License-Identifier: MIT
 ## S03-02 场景信号串联集成测试
 ##

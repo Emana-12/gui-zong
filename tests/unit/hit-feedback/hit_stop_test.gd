@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # SPDX-License-Identifier: MIT
 # 命中反馈系统单元测试 — 顿帧计算、震动参数、优先级、低帧率自适应
 extends Node

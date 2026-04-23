@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # SPDX-License-Identifier: MIT
 ## S03-08 纯技巧进度系统单元测试
 ##

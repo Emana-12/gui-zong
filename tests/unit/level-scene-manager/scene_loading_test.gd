@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## SceneLoadingTest — LevelSceneManager 场景加载与切换测试
 ##
 ## 测试覆盖: Story 001 的验收标准

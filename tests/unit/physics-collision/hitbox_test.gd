@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # 物理碰撞系统单元测试
 # 测试覆盖 Story 001 的所有 Acceptance Criteria
 class_name HitboxTest

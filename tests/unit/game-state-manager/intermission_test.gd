@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## GameStateManager — Intermission & Wave Completion 测试
 ##
 ## 使用 GDUnit4 框架。

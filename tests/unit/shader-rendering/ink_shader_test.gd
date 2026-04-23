@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # 水墨着色器测试
 # 覆盖 Story 002: 着色器加载、参数设置
 # Story Type: Visual/Feel — 本文件覆盖可自动化验证的参数逻辑部分

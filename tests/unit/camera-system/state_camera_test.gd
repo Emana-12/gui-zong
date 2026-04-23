@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## CameraController State-Driven 测试
 ##
 ## 测试 Story 003: 状态驱动相机行为

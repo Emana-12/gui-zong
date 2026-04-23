@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## GameStateManager 暂停与 Web 焦点集成测试
 ##
 ## 使用 GDUnit4 框架。

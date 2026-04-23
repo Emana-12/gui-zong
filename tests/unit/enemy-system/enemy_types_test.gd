@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # SPDX-License-Identifier: MIT
 ## S03-04 敌人类型扩展单元测试
 ##

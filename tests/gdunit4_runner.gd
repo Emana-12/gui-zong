@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # GdUnit4 test runner — invoked by CI and /smoke-check
 # Usage: godot --headless --script tests/gdunit4_runner.gd
 extends SceneTree

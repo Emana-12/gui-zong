@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # 命中判定系统单元测试
 # 覆盖 Story 001 的 4 个 Acceptance Criteria
 extends GdUnitTestSuite

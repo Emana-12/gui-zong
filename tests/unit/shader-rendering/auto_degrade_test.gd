@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # 自动降级系统测试
 # 覆盖 Story 004: FPS 降级、ink_steps 降低、防抖、不自动恢复
 # Story Type: Logic | Gate: BLOCKING

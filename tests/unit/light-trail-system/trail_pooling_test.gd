@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # 流光轨迹系统 — 轨迹池化与共享材质测试
 extends GdUnitTestSuite
 

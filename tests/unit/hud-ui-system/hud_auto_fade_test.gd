@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## BattleHUD 自动淡出与状态响应测试
 ##
 ## 测试 BattleHUD 的自动淡出逻辑、自定义淡出、万剑归宗恢复。

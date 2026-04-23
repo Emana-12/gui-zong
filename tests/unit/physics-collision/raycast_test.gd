@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # 射线检测系统单元测试
 # 测试覆盖 Story 002 的所有 Acceptance Criteria
 class_name RaycastTest

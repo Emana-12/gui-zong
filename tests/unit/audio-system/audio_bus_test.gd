@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## audio_bus_test.gd — Story 001 测试
 ##
 ## 验证音频总线管理：Master/SFX/BGM 总线创建、独立音量控制。

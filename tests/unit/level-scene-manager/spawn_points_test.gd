@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## SpawnPointsTest — LevelSceneManager 生成点与 Web 超时测试
 ##
 ## 测试覆盖: Story 002 的验收标准

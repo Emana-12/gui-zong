@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## PlayerController — 生命值与死亡测试
 ##
 ## 覆盖 Story 003 的 3 个 Acceptance Criteria:

@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## PhysicsCollisionSystem 性能集成测试
 ##
 ## 使用 GDUnit4 框架。

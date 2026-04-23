@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## TuningMetrics 单元测试
 ##
 ## 测试组合连击长度追踪、剑式触发率统计、空档频率检测。

@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## CameraController Follow 测试
 ##
 ## 测试 Story 001: 固定角度跟随

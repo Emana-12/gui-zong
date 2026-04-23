@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## Platform & Device Adaptation 测试 (Story 003)
 ##
 ## 覆盖 AC-1、AC-2、AC-4 的自动化测试。

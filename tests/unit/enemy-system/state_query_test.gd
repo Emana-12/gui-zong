@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## state_query_test.gd — EnemySystem 状态管理与查询 API 测试
 ##
 ## 覆盖 story-003-state-query 全部 3 个 AC + 4 个边缘用例

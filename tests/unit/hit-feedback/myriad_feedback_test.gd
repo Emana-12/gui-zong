@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # SPDX-License-Identifier: MIT
 # 万剑归宗反馈单元测试 — 5帧帧帧覆盖、震动参数、优先级覆盖、enable/disable
 extends Node

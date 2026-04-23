@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # 战斗 HUD 显示测试
 extends GdUnitTestSuite
 

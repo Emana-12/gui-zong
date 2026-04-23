@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## BattleHUD 菜单系统与游戏结束测试
 ##
 ## 测试菜单栈 (push/pop)、游戏结束画面、墨迹侵蚀动画。

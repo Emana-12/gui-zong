@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## damage_death_test.gd — EnemySystem 伤害与死亡测试
 ##
 ## 覆盖 story-002-damage-death 全部 3 个 AC + 4 个边缘用例

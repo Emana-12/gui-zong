@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # 后处理 Pass 测试
 # 覆盖 Story 005: 后处理开关、WebGL 编译失败回退
 # Story Type: Integration | Gate: BLOCKING

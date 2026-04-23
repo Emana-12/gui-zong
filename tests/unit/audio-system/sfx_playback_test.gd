@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## sfx_playback_test.gd — Story 002 测试
 ##
 ## 验证 SFX 播放：预加载、播放、音量/pitch 控制、实例限制。

@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## myriad_trigger_test.gd — ComboSystem 万剑归宗触发测试
 ##
 ## 覆盖 story-002-myriad-trigger 全部 5 个 AC：

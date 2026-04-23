@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## spawn_ai_test.gd — EnemySystem 生成与 AI 状态机测试
 ##
 ## 覆盖 story-001-spawn-ai 全部 3 个 AC

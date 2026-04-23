@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # S02-05: Accessibility Basic Tier — Unit Tests
 # Tests for AccessibilityManager public API
 # Ref: production/epics/.../sprint-02.md S02-05

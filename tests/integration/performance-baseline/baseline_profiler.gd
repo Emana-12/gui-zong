@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## PerformanceBaseline — 基线性能测试
 ##
 ## 测量 3/5/10 敌人数量下的帧时间、绘制调用、内存使用。

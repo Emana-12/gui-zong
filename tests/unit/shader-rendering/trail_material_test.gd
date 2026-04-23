@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # 流光轨迹材质测试
 # 覆盖 Story 003: 轨迹材质创建、颜色/透明度、三式剑招对应
 # Story Type: Integration | Gate: BLOCKING

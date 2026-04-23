@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## web_audiocontext_test.gd — Story 004 测试
 ##
 ## 验证 Web AudioContext 初始化：init_audio_context()、首次交互自动初始化、

@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # Story 002: 伤害计算与去重 — 单元测试
 # 覆盖 4 个 Acceptance Criteria:
 #   AC-1: 游剑式 damage → 1

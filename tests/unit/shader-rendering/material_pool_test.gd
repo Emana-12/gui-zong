@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # 材质池单元测试
 # 覆盖 Story 001: 材质池上限、哈希去重、get_material null 返回
 # Story Type: Logic | Gate: BLOCKING

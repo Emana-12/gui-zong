@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## form_execution_test.gd — ThreeFormsCombat 剑招执行测试
 ##
 ## 覆盖 story-001-form-execution 全部 4 个 AC

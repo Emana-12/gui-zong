@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## switching_cooldown_test.gd — ThreeFormsCombat 式切换与冷却测试
 ##
 ## 覆盖 story-002-switching-cooldown 全部 4 个 AC

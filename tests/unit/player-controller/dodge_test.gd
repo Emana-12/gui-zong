@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## PlayerController — 闪避与无敌帧测试
 ##
 ## 覆盖 Story 002 的 3 个 Acceptance Criteria:

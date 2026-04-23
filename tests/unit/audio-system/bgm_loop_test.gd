@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## bgm_loop_test.gd — Story 003 测试
 ##
 ## 验证循环音效和 BGM：play_loop/stop_loop、BGM crossfade、stop_bgm。

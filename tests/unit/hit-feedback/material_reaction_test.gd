@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 # SPDX-License-Identifier: MIT
 # 材质反应对象池单元测试 — 池分配/回收、分发表映射、池满跳过、自动回收
 extends Node

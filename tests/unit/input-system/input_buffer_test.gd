@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## InputSystem 输入缓冲机制测试
 ##
 ## 使用 GDUnit4 框架。

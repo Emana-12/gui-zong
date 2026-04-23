@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## GameStateManager FSM 核心与状态转换测试
 ##
 ## 使用 GDUnit4 框架。

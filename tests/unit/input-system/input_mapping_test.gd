@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## InputSystem 输入映射与查询 API 测试
 ##
 ## 使用 GDUnit4 框架。

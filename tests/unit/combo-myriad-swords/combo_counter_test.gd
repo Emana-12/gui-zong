@@ -1,3 +1,4 @@
+@warning_ignore_start("inferred_declaration")
 ## combo_counter_test.gd — ComboSystem 连击计数测试
 ##
 ## 覆盖 story-001-combo-counter 全部 4 个 AC：
