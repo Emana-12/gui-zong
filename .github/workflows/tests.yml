@@ -35,7 +35,7 @@ jobs:
         run: |
           cd src
           chmod +x addons/gdUnit4/runtest.sh
-          GODOT_BIN=$(which godot) xvfb-run bash addons/gdUnit4/runtest.sh -a tests/unit -a tests/integration -rd reports 2>&1
+          GODOT_BIN=$(which godot) xvfb-run bash addons/gdUnit4/runtest.sh -a ../tests/unit -a ../tests/integration -rd reports 2>&1
 
       - name: Upload Test Results
         if: always()
