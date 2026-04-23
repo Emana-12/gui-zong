@@ -26,7 +26,7 @@ func test_audio_manager_is_node() -> void:
 
 ## 验证 init_audio_context() 幂等
 func test_init_audio_context_idempotent() -> void:
-	var am := auto_free(AudioManager.new())
+	var am: AudioManager = auto_free(AudioManager.new())
 	# 非 Web 平台 _ready 中会调用 init_audio_context
 	# 模拟多次调用不应报错
 	am.init_audio_context()

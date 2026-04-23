@@ -24,7 +24,7 @@ func before_test() -> void:
 ## =========================================================================
 func test_show_menu_pushes_to_stack() -> void:
 	# Arrange
-	var fake_menu := auto_free(Panel.new())
+	var fake_menu: Panel = auto_free(Panel.new())
 	fake_menu.visible = false
 	_hud._menu_nodes["pause"] = fake_menu
 
@@ -43,7 +43,7 @@ func test_show_menu_pushes_to_stack() -> void:
 ## =========================================================================
 func test_hide_menu_pops_from_stack() -> void:
 	# Arrange
-	var fake_menu := auto_free(Panel.new())
+	var fake_menu: Panel = auto_free(Panel.new())
 	fake_menu.visible = true
 	_hud._menu_nodes["pause"] = fake_menu
 	_hud.show_menu("pause")
@@ -62,8 +62,8 @@ func test_hide_menu_pops_from_stack() -> void:
 ## =========================================================================
 func test_menu_stack_push_pop() -> void:
 	# Arrange
-	var menu_a := auto_free(Panel.new())
-	var menu_b := auto_free(Panel.new())
+	var menu_a: Panel = auto_free(Panel.new())
+	var menu_b: Panel = auto_free(Panel.new())
 	_hud._menu_nodes["a"] = menu_a
 	_hud._menu_nodes["b"] = menu_b
 
@@ -92,8 +92,8 @@ func test_menu_stack_push_pop() -> void:
 ## =========================================================================
 func test_hide_all_menus_clears_stack() -> void:
 	# Arrange
-	var menu_a := auto_free(Panel.new())
-	var menu_b := auto_free(Panel.new())
+	var menu_a: Panel = auto_free(Panel.new())
+	var menu_b: Panel = auto_free(Panel.new())
 	_hud._menu_nodes["a"] = menu_a
 	_hud._menu_nodes["b"] = menu_b
 	_hud.show_menu("a")
@@ -216,7 +216,7 @@ func test_restart_button_has_signal_connection() -> void:
 ## =========================================================================
 func test_idempotent_push_same_menu() -> void:
 	# Arrange
-	var fake_menu := auto_free(Panel.new())
+	var fake_menu: Panel = auto_free(Panel.new())
 	_hud._menu_nodes["pause"] = fake_menu
 
 	# Act
@@ -246,7 +246,7 @@ func test_hide_menu_empty_stack_safe() -> void:
 func test_show_menu_emits_signal() -> void:
 	var signal_monitor := monitor_signals(_hud)
 
-	var fake_menu := auto_free(Panel.new())
+	var fake_menu: Panel = auto_free(Panel.new())
 	_hud._menu_nodes["test"] = fake_menu
 
 	_hud.show_menu("test")
@@ -259,7 +259,7 @@ func test_show_menu_emits_signal() -> void:
 ## =========================================================================
 func test_hide_menu_emits_signal() -> void:
 	# Arrange
-	var fake_menu := auto_free(Panel.new())
+	var fake_menu: Panel = auto_free(Panel.new())
 	_hud._menu_nodes["test"] = fake_menu
 	_hud.show_menu("test")
 

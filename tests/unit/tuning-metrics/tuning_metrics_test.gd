@@ -22,8 +22,8 @@ func after_test() -> void:
 ## 组合连击: 连续命中在窗口内应增加连击计数
 func test_tuning_metrics_combo_single_hit_records_combo_one() -> void:
 	# Arrange
-	var attacker := auto_free(Node3D.new())
-	var target := auto_free(Node3D.new())
+	var attacker: Node3D = auto_free(Node3D.new())
+	var target: Node3D = auto_free(Node3D.new())
 	var result := HitJudgment.HitResult.new(
 		attacker, target,
 		HitJudgment.SwordForm.YOU, 1,
@@ -40,8 +40,8 @@ func test_tuning_metrics_combo_single_hit_records_combo_one() -> void:
 ## 组合连击: 连续两次命中在同一窗口内应增加连击到 2
 func test_tuning_metrics_combo_two_hits_in_window_increments() -> void:
 	# Arrange
-	var attacker := auto_free(Node3D.new())
-	var target := auto_free(Node3D.new())
+	var attacker: Node3D = auto_free(Node3D.new())
+	var target: Node3D = auto_free(Node3D.new())
 	var result := HitJudgment.HitResult.new(
 		attacker, target,
 		HitJudgment.SwordForm.YOU, 1,
@@ -60,8 +60,8 @@ func test_tuning_metrics_combo_two_hits_in_window_increments() -> void:
 ## 组合连击: 超过窗口时间的命中应结束前一个组合
 func test_tuning_metrics_combo_hit_after_window_starts_new_combo() -> void:
 	# Arrange
-	var attacker := auto_free(Node3D.new())
-	var target := auto_free(Node3D.new())
+	var attacker: Node3D = auto_free(Node3D.new())
+	var target: Node3D = auto_free(Node3D.new())
 	var result := HitJudgment.HitResult.new(
 		attacker, target,
 		HitJudgment.SwordForm.YOU, 1,
@@ -83,8 +83,8 @@ func test_tuning_metrics_combo_hit_after_window_starts_new_combo() -> void:
 ## 组合连击: 被格挡的命中不应计入连击
 func test_tuning_metrics_combo_blocked_hit_does_not_increment() -> void:
 	# Arrange
-	var attacker := auto_free(Node3D.new())
-	var target := auto_free(Node3D.new())
+	var attacker: Node3D = auto_free(Node3D.new())
+	var target: Node3D = auto_free(Node3D.new())
 	var hit_result := HitJudgment.HitResult.new(
 		attacker, target,
 		HitJudgment.SwordForm.YOU, 1,

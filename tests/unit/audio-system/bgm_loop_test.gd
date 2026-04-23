@@ -20,7 +20,7 @@ func after_test() -> void:
 
 ## 验证 play_loop 在 AudioContext 未初始化时静默失败
 func test_play_loop_before_init_silent_fail() -> void:
-	var am := auto_free(AudioManager.new())
+	var am: AudioManager = auto_free(AudioManager.new())
 	am._audio_context_initialized = false
 	am.play_loop(&"ambient_wind", 0.5)
 	assert_bool(true).is_true()
@@ -41,7 +41,7 @@ func test_play_loop_missing_file_no_crash() -> void:
 
 ## 验证 play_bgm 在 AudioContext 未初始化时静默失败
 func test_play_bgm_before_init_silent_fail() -> void:
-	var am := auto_free(AudioManager.new())
+	var am: AudioManager = auto_free(AudioManager.new())
 	am._audio_context_initialized = false
 	am.play_bgm(&"boss_theme", 1.0)
 	assert_bool(true).is_true()

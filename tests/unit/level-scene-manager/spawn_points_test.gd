@@ -31,12 +31,12 @@ func before_test() -> void:
 	_manager.add_child(_active_scene_container)
 
 	# 创建 FadeOverlay + FadeRect（虽然此测试不测 fade，但 _ready 需要）
-	var overlay := auto_free(CanvasLayer.new())
+	var overlay: CanvasLayer = auto_free(CanvasLayer.new())
 	overlay.name = "FadeOverlay"
 	overlay.layer = 100
 	_manager.add_child(overlay)
 
-	var fade_rect := auto_free(ColorRect.new())
+	var fade_rect: ColorRect = auto_free(ColorRect.new())
 	fade_rect.name = "FadeRect"
 	fade_rect.visible = false
 	overlay.add_child(fade_rect)
@@ -62,7 +62,7 @@ func test_get_spawn_points_returns_all_markers() -> void:
 	# Arrange: 添加 5 个 Marker3D 节点
 	var expected_positions: Array[Vector3] = []
 	for i in range(5):
-		var marker := auto_free(Marker3D.new())
+		var marker: Marker3D = auto_free(Marker3D.new())
 		marker.name = "SpawnPoint_%d" % i
 		marker.position = Vector3(i * 2.0, 0.0, i * 3.0)
 		_mock_scene_instance.add_child(marker)
@@ -92,12 +92,12 @@ func test_get_spawn_points_empty_when_no_markers() -> void:
 ## Then: 只返回 SpawnPoint_0 的位置
 func test_get_spawn_points_only_prefixed_markers() -> void:
 	# Arrange
-	var sp := auto_free(Marker3D.new())
+	var sp: Marker3D = auto_free(Marker3D.new())
 	sp.name = "SpawnPoint_0"
 	sp.position = Vector3(1, 0, 0)
 	_mock_scene_instance.add_child(sp)
 
-	var other := auto_free(Marker3D.new())
+	var other: Marker3D = auto_free(Marker3D.new())
 	other.name = "OtherMarker"
 	other.position = Vector3(99, 0, 0)
 	_mock_scene_instance.add_child(other)
@@ -115,7 +115,7 @@ func test_get_spawn_points_only_prefixed_markers() -> void:
 ## When: 调用 get_spawn_points()
 ## Then: 返回的 Vector3 只包含位置，不包含旋转
 func test_get_spawn_points_rotation_ignored() -> void:
-	var marker := auto_free(Marker3D.new())
+	var marker: Marker3D = auto_free(Marker3D.new())
 	marker.name = "SpawnPoint_0"
 	marker.position = Vector3(5.0, 2.0, 3.0)
 	marker.rotation = Vector3(0.5, 1.2, 0.8)
@@ -135,12 +135,12 @@ func test_get_spawn_points_rotation_ignored() -> void:
 ## When: 调用 get_spawn_points()
 ## Then: 只返回 Marker3D 的位置
 func test_get_spawn_points_ignores_non_markers() -> void:
-	var mesh := auto_free(MeshInstance3D.new())
+	var mesh: MeshInstance3D = auto_free(MeshInstance3D.new())
 	mesh.name = "ArenaFloor"
 	mesh.position = Vector3(100, 100, 100)
 	_mock_scene_instance.add_child(mesh)
 
-	var marker := auto_free(Marker3D.new())
+	var marker: Marker3D = auto_free(Marker3D.new())
 	marker.name = "SpawnPoint_0"
 	marker.position = Vector3(1, 0, 0)
 	_mock_scene_instance.add_child(marker)

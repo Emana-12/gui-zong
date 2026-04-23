@@ -17,7 +17,7 @@ func before_test() -> void:
 	_combat = auto_free(ThreeFormsCombat.new())
 	_combat.name = "ThreeFormsCombat"
 	# Provide a mock owner node for hitbox creation
-	var owner_node := auto_free(Node3D.new())
+	var owner_node: Node3D = auto_free(Node3D.new())
 	owner_node.name = "Owner"
 	add_child(owner_node)
 	_combat.owner = owner_node

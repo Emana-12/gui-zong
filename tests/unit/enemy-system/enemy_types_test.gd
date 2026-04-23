@@ -15,7 +15,7 @@ var _enemy_system: EnemySystem
 func before_test() -> void:
 	_enemy_system = auto_free(EnemySystem.new())
 	# 设置玩家引用用于 AI 测试
-	var player := auto_free(CharacterBody3D.new())
+	var player: CharacterBody3D = auto_free(CharacterBody3D.new())
 	player.position = Vector3.ZERO
 	_enemy_system.set_player_ref(player)
 

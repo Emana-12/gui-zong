@@ -172,7 +172,7 @@ func test_is_already_hit_returns_false_before_register() -> void:
 func test_same_hitbox_different_targets_both_valid() -> void:
 	# Arrange
 	var hitbox_id := 700
-	var other_target := auto_free(FakeEntity.new())
+	var other_target: FakeEntity = auto_free(FakeEntity.new())
 	other_target.name = "OtherTarget"
 	var collision_a := _make_collision(_attacker, _target, hitbox_id)
 	var collision_b := _make_collision(_attacker, other_target, hitbox_id)

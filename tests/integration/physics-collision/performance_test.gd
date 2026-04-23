@@ -36,7 +36,7 @@ func after_test() -> void:
 ## =========================================================================
 func test_hitbox_budget_within_limit() -> void:
 	var shape := SphereShape3D.new()
-	var owner := auto_free(Node3D.new())
+	var owner: Node3D = auto_free(Node3D.new())
 	add_child(owner)
 
 	# 创建 18 个 hitbox（池的最大容量）
@@ -57,7 +57,7 @@ func test_hitbox_budget_within_limit() -> void:
 ## =========================================================================
 func test_hitbox_budget_overflow_returns_negative() -> void:
 	var shape := SphereShape3D.new()
-	var owner := auto_free(Node3D.new())
+	var owner: Node3D = auto_free(Node3D.new())
 	add_child(owner)
 
 	# 填满池
@@ -78,9 +78,9 @@ func test_hitbox_budget_overflow_returns_negative() -> void:
 ## =========================================================================
 func test_hitbox_budget_mixed_scenario() -> void:
 	var shape := SphereShape3D.new()
-	var player_owner := auto_free(Node3D.new())
-	var enemy_owner := auto_free(Node3D.new())
-	var attack_owner := auto_free(Node3D.new())
+	var player_owner: Node3D = auto_free(Node3D.new())
+	var enemy_owner: Node3D = auto_free(Node3D.new())
+	var attack_owner: Node3D = auto_free(Node3D.new())
 	add_child(player_owner)
 	add_child(enemy_owner)
 	add_child(attack_owner)
@@ -118,7 +118,7 @@ func test_hitbox_budget_mixed_scenario() -> void:
 ## =========================================================================
 func test_hitbox_destroy_frees_capacity() -> void:
 	var shape := SphereShape3D.new()
-	var owner := auto_free(Node3D.new())
+	var owner: Node3D = auto_free(Node3D.new())
 	add_child(owner)
 
 	var created_ids: Array[int] = []
@@ -150,7 +150,7 @@ func test_hitbox_destroy_frees_capacity() -> void:
 ## =========================================================================
 func test_hitbox_pool_reuse() -> void:
 	var shape := SphereShape3D.new()
-	var owner := auto_free(Node3D.new())
+	var owner: Node3D = auto_free(Node3D.new())
 	add_child(owner)
 
 	# 创建 3 个并全部销毁

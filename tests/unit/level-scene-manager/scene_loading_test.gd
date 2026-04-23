@@ -39,7 +39,7 @@ func before_test() -> void:
 	_manager.add_child(_active_scene_container)
 
 	# 创建 FadeOverlay + FadeRect
-	var overlay := auto_free(CanvasLayer.new())
+	var overlay: CanvasLayer = auto_free(CanvasLayer.new())
 	overlay.name = "FadeOverlay"
 	overlay.layer = 100
 	_manager.add_child(overlay)

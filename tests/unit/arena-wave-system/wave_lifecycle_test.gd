@@ -202,7 +202,7 @@ func test_get_wave_data_does_not_change_state() -> void:
 ## =========================================================================
 
 func test_set_enemy_system_replaces_reference() -> void:
-	var new_system := auto_free(EnemySystem.new())
+	var new_system: EnemySystem = auto_free(EnemySystem.new())
 	add_child(new_system)
 	_wave_system.set_enemy_system(new_system)
 	# Old reference should be replaced
@@ -212,7 +212,7 @@ func test_set_enemy_system_replaces_reference() -> void:
 
 
 func test_set_game_state_manager_injects_reference() -> void:
-	var gsm := auto_free(GameStateManager.new())
+	var gsm: GameStateManager = auto_free(GameStateManager.new())
 	add_child(gsm)
 	_wave_system.set_game_state_manager(gsm)
 	# Should not crash, connection established

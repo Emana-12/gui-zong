@@ -20,7 +20,7 @@ func after_test() -> void:
 
 ## 验证 play_sfx 在 AudioContext 未初始化时静默失败
 func test_play_sfx_before_init_silent_fail() -> void:
-	var am := auto_free(AudioManager.new())
+	var am: AudioManager = auto_free(AudioManager.new())
 	am._audio_context_initialized = false
 	# 不应抛出异常或创建节点
 	am.play_sfx(&"nonexistent", 1.0, 1.0)
