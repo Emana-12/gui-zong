@@ -87,8 +87,8 @@ func test_valid_hit_result_has_correct_fields() -> void:
 	assert_object(result.target).is_equal(_target)
 	assert_int(result.sword_form).is_equal(HitJudgment.SwordForm.YOU)
 	assert_int(result.damage).is_equal(1)
-	assert_bool(result.hit_position.is_equal_approx(Vector3(1, 0, 0)).is_true())
-	assert_bool(result.hit_normal.is_equal_approx(Vector3(0, 1, 0)).is_true())
+	assert_bool((result.hit_position.is_equal_approx(Vector3(1, 0, 0))).is_true())
+	assert_bool((result.hit_normal.is_equal_approx(Vector3(0, 1, 0))).is_true())
 
 
 ## AC-1c: 各剑招伤害值正确。
@@ -264,8 +264,8 @@ func test_hit_landed_signal_carries_full_data() -> void:
 	assert_object(received_result.target).is_equal(_target)
 	assert_int(received_result.sword_form).is_equal(HitJudgment.SwordForm.ZUAN)
 	assert_int(received_result.damage).is_equal(3)
-	assert_bool(received_result.hit_position.is_equal_approx(Vector3(1, 0, 0)).is_true())
-	assert_bool(received_result.hit_normal.is_equal_approx(Vector3(0, 1, 0)).is_true())
+	assert_bool((received_result.hit_position.is_equal_approx(Vector3(1, 0, 0))).is_true())
+	assert_bool((received_result.hit_normal.is_equal_approx(Vector3(0, 1, 0))).is_true())
 	assert_that(received_result.material_type).is_equal(&"body")
 
 

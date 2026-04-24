@@ -79,7 +79,7 @@ func test_sword_hitbox_overlaps_enemy_hurtbox_triggers_collision_detected() -> v
 	assert_int(emitted_args.size()).is_greater(0)
 	var result: CollisionResult = emitted_args[0][0]
 	assert_object(result.collider).is_equal(enemy_area.get_parent())
-	assert_bool(result.hit_position.is_equal_approx(enemy_area.global_position)).is_true()
+	assert_bool((result.hit_position.is_equal_approx(enemy_area.global_position))).is_true()
 
 
 ## AC-2: Player hurtbox overlaps enemy attack during invincibility → collision still detected
@@ -219,4 +219,4 @@ func test_update_hitbox_transform_updates_position() -> void:
 
 	# 验证位置已更新
 	var hitbox_data: PhysicsCollisionSystem.HitboxData = physics_system._active_hitboxes[hitbox_id]
-	assert_bool(hitbox_data.collision_shape.global_position.is_equal_approx(new_pos)).is_true()
+	assert_bool((hitbox_data.collision_shape.global_position.is_equal_approx(new_pos))).is_true()

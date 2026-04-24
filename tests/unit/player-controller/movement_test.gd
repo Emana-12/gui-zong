@@ -149,7 +149,7 @@ func test_release_all_keys_position_stable() -> void:
 	for i in 5:
 		_player._physics_process(1.0 / 60.0)
 
-	assert_bool(_player.position.is_equal_approx(pos_before)).is_true()
+	assert_bool((_player.position.is_equal_approx(pos_before))).is_true()
 
 
 ## AC-2c: 释放后回到 IDLE 状态。
@@ -277,7 +277,7 @@ func test_no_enemies_preserves_previous_facing() -> void:
 	# 再走几帧，依然无敌人
 	_player._physics_process(1.0 / 60.0)
 
-	assert_bool(_player.rotation.is_equal_approx(rotation_before)).is_true()
+	assert_bool((_player.rotation.is_equal_approx(rotation_before))).is_true()
 
 
 ## AC-4d: 敌人位置变化后，下一帧更新朝向。

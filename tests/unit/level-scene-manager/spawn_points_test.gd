@@ -74,7 +74,7 @@ func test_get_spawn_points_returns_all_markers() -> void:
 	# Assert
 	assert_int(points.size()).is_equal(5)
 	for i in range(5):
-		assert_bool(points[i].is_equal_approx(expected_positions[i])).is_true()
+		assert_bool((points[i].is_equal_approx(expected_positions[i]))).is_true()
 
 
 ## 验证无 Marker3D 时返回空数组
@@ -107,7 +107,7 @@ func test_get_spawn_points_only_prefixed_markers() -> void:
 
 	# Assert
 	assert_int(points.size()).is_equal(1)
-	assert_bool(points[0].is_equal_approx(Vector3(1, 0, 0)).is_true())
+	assert_bool((points[0].is_equal_approx(Vector3(1, 0, 0))).is_true())
 
 
 ## 验证 Marker3D 有旋转不影响位置值
@@ -147,7 +147,7 @@ func test_get_spawn_points_ignores_non_markers() -> void:
 
 	var points: PackedVector3Array = _manager.get_spawn_points()
 	assert_int(points.size()).is_equal(1)
-	assert_bool(points[0].is_equal_approx(Vector3(1, 0, 0)).is_true())
+	assert_bool((points[0].is_equal_approx(Vector3(1, 0, 0))).is_true())
 
 
 ## 验证无活跃场景实例时返回空数组
