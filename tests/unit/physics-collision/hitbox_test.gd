@@ -69,17 +69,17 @@ func test_sword_hitbox_overlaps_enemy_hurtbox_triggers_collision_detected() -> v
 	var signal_monitor = monitor_signals(physics_system)
 
 	# 执行：等待物理帧处理
-	await physics_process_frame()
+	await get_tree().physics_frame
 
 	# 验证：collision_detected 信号被触发
 	assert_bool(signal_monitor.is_emitted("collision_detected")).is_true()
 
 	# 验证：碰撞结果包含正确的位置和对象
-	var emitted_args := signal_monitor.get_emitted_args("collision_detected")
+	var emitted_args: Variant = signal_monitor.get_emitted_args("collision_detected")
 	assert_int(emitted_args.size()).is_greater(0)
 	var result: CollisionResult = emitted_args[0][0]
 	assert_object(result.collider).is_equal(enemy_area.get_parent())
-	assert_vector3(result.hit_position).is_equal(enemy_area.global_position)
+	assert_bool(result.hit_position.is_equal_approx(enemy_area.global_position)).is_true()
 
 
 ## AC-2: Player hurtbox overlaps enemy attack during invincibility → collision still detected
@@ -108,7 +108,7 @@ func test_player_invincibility_still_detects_collision() -> void:
 	var signal_monitor = monitor_signals(physics_system)
 
 	# 执行：等待物理帧处理
-	await physics_process_frame()
+	await get_tree().physics_frame
 
 	# 验证：collision_detected 信号被触发（物理层检测到碰撞）
 	assert_bool(signal_monitor.is_emitted("collision_detected")).is_true()
@@ -142,7 +142,7 @@ func test_create_and_destroy_hitbox_same_frame_no_error() -> void:
 	assert_bool(hitbox_data.pending_destroy).is_true()
 
 	# 执行：等待物理帧处理（销毁在物理帧中执行）
-	await physics_process_frame()
+	await get_tree().physics_frame
 
 	# 验证：hitbox 已从活跃列表移除
 	assert_bool(physics_system._active_hitboxes.has(hitbox_id)).is_false()
@@ -194,7 +194,7 @@ func test_get_hitbox_collisions_returns_overlaps() -> void:
 	enemy_area.global_position = Vector3(0, 0, 0)
 
 	# 等待物理帧更新
-	await physics_process_frame()
+	await get_tree().physics_frame
 
 	# 获取碰撞结果
 	var collisions := physics_system.get_hitbox_collisions(hitbox_id)
@@ -219,4 +219,4 @@ func test_update_hitbox_transform_updates_position() -> void:
 
 	# 验证位置已更新
 	var hitbox_data: PhysicsCollisionSystem.HitboxData = physics_system._active_hitboxes[hitbox_id]
-	assert_vector3(hitbox_data.collision_shape.global_position).is_equal(new_pos)
+	assert_bool(hitbox_data.collision_shape.global_position.is_equal_approx(new_pos)).is_true()
