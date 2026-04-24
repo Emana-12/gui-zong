@@ -1,4 +1,4 @@
-name: Project Validation
+name: Automated Tests
 
 on:
   push:
@@ -7,10 +7,10 @@ on:
     branches: [main]
 
 jobs:
-  validate:
-    name: Validate Build
+  test:
+    name: Run GdUnit4 Tests
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
 
     steps:
       - name: Checkout
@@ -26,28 +26,21 @@ jobs:
       - name: Install Xvfb
         run: sudo apt-get install -y xvfb
 
-      - name: Import and validate project
+      - name: Import project
         run: |
           cd src
           xvfb-run godot --headless --import 2>&1 || true
-          echo "Project import completed"
 
-      - name: Verify scene files
+      - name: Run GdUnit4 Tests
         run: |
-          errors=0
-          for f in $(find src/ -name "*.tscn" -type f); do
-            if ! head -1 "$f" | grep -q "gd_scene"; then
-              echo "INVALID: $f"
-              errors=$((errors + 1))
-            fi
-          done
-          echo "Scenes: $(find src/ -name '*.tscn' | wc -l) checked, $errors errors"
-          if [ $errors -gt 0 ]; then exit 1; fi
+          cd src
+          chmod +x addons/gdUnit4/runtest.sh
+          GODOT_BIN=$(which godot) xvfb-run bash addons/gdUnit4/runtest.sh -a ../tests/unit -a ../tests/integration -rd reports 2>&1
 
-      - name: Project summary
-        run: |
-          echo "GDScript files: $(find src/ -name '*.gd' | wc -l)"
-          echo "Shader files: $(find src/ -name '*.gdshader' | wc -l)"
-          echo "Test files: $(find tests/ -name '*.gd' | wc -l)"
-          echo "GDD files: $(find design/gdd/ -name '*.md' | wc -l)"
-          echo "Validation passed"
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: src/reports/
+        continue-on-error: true
