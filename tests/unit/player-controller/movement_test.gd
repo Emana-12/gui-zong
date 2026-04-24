@@ -229,7 +229,7 @@ func test_moving_towards_nearest_enemy_faces_enemy() -> void:
 	_mock_input.move_direction = Vector2(0.0, -1.0)
 
 	# 在 (0, 0, -10) 放置敌人
-	var enemy := auto_free(MockEnemy.new(Vector3(0.0, 0.0, -10.0)))
+	var enemy: MockEnemy = auto_free(MockEnemy.new(Vector3(0.0, 0.0, -10.0)))
 	enemy.add_to_group("enemies")
 	add_child(enemy)
 
@@ -248,12 +248,12 @@ func test_faces_nearest_of_two_enemies() -> void:
 	_mock_input.move_direction = Vector2(0.0, -1.0)
 
 	# 远敌: (10, 0, 0)
-	var enemy_far := auto_free(MockEnemy.new(Vector3(10.0, 0.0, 0.0)))
+	var enemy_far: MockEnemy = auto_free(MockEnemy.new(Vector3(10.0, 0.0, 0.0)))
 	enemy_far.add_to_group("enemies")
 	add_child(enemy_far)
 
 	# 近敌: (0, 0, -5)
-	var enemy_near := auto_free(MockEnemy.new(Vector3(0.0, 0.0, -5.0)))
+	var enemy_near: MockEnemy = auto_free(MockEnemy.new(Vector3(0.0, 0.0, -5.0)))
 	enemy_near.add_to_group("enemies")
 	add_child(enemy_near)
 
@@ -286,7 +286,7 @@ func test_enemy_moves_updates_facing_next_frame() -> void:
 	_mock_input.move_direction = Vector2(0.0, -1.0)
 
 	# 敌人初始在右边 (10, 0, 0)
-	var enemy := auto_free(MockEnemy.new(Vector3(10.0, 0.0, 0.0)))
+	var enemy: MockEnemy = auto_free(MockEnemy.new(Vector3(10.0, 0.0, 0.0)))
 	enemy.add_to_group("enemies")
 	add_child(enemy)
 

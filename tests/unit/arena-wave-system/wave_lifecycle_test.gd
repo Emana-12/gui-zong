@@ -216,7 +216,6 @@ func test_set_game_state_manager_injects_reference() -> void:
 	add_child(gsm)
 	_wave_system.set_game_state_manager(gsm)
 	# Should not crash, connection established
-	pass_test("set_game_state_manager completed without error")
 
 
 func test_set_rng_seed_is_deterministic() -> void:
