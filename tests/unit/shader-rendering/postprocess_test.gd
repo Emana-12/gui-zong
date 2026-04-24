@@ -102,12 +102,12 @@ func test_post_process_toggle_multiple_times() -> void:
 
 ## 后处理关闭后不影响材质池。
 func test_post_process_disable_does_not_affect_pool() -> void:
-	var usage_before := _shader_manager.get_pool_usage()
+	var usage_before = _shader_manager.get_pool_usage()
 
 	_shader_manager.set_post_process_enabled(&"outline", false)
 	_shader_manager.set_post_process_enabled(&"tone", false)
 
-	var usage_after := _shader_manager.get_pool_usage()
+	var usage_after = _shader_manager.get_pool_usage()
 	assert_int(usage_after[0]).is_equal(usage_before[0])
 
 
@@ -115,7 +115,7 @@ func test_post_process_disable_does_not_affect_pool() -> void:
 func test_post_process_disabled_trail_material_still_works() -> void:
 	_shader_manager.set_post_process_enabled(&"outline", false)
 
-	var mat := _shader_manager.create_trail_material(Color("#D4A843"), 0.8)
+	var mat = _shader_manager.create_trail_material(Color("#D4A843"), 0.8)
 	assert_object(mat).is_not_null()
 
 

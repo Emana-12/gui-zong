@@ -158,7 +158,7 @@ func test_combo_ac4_hit_before_timeout_restarts_timer() -> void:
 
 ## 连击增加时 combo_changed 信号发出
 func test_combo_changed_signal_emitted_on_increase() -> void:
-	var monitor := await monitor_signals(_combo)
+	var monitor = await monitor_signals(_combo)
 	_combo.on_hit_landed(1)  # YOU
 	await assert_signal(monitor).is_emitted("combo_changed", [1])
 
@@ -167,7 +167,7 @@ func test_combo_changed_signal_emitted_on_increase() -> void:
 func test_combo_changed_signal_emitted_on_hit_reset() -> void:
 	_combo.on_hit_landed(1)
 	_combo.on_hit_landed(3)
-	var monitor := await monitor_signals(_combo)
+	var monitor = await monitor_signals(_combo)
 	_combo.on_player_hit()
 	await assert_signal(monitor).is_emitted("combo_changed", [0])
 
@@ -175,7 +175,7 @@ func test_combo_changed_signal_emitted_on_hit_reset() -> void:
 ## 同式命中不发出 combo_changed 信号
 func test_combo_changed_not_emitted_on_same_form() -> void:
 	_combo.on_hit_landed(1)
-	var monitor := await monitor_signals(_combo)
+	var monitor = await monitor_signals(_combo)
 	_combo.on_hit_landed(1)  # 同式
 	await assert_signal(monitor).is_not_emitted("combo_changed")
 

@@ -197,7 +197,7 @@ func test_alpha_never_negative() -> void:
 ## AC-Edge: 淡出时发出 hud_fade_changed 信号
 ## =========================================================================
 func test_fade_changed_signal() -> void:
-	var signal_monitor := monitor_signals(_hud)
+	var signal_monitor = monitor_signals(_hud)
 
 	# Act
 	_hud._test_set_last_hit_time(Time.get_ticks_msec() / 1000.0 - 5.0)

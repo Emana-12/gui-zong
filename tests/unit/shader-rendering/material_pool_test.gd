@@ -30,7 +30,7 @@ func test_get_material_nonexistent_returns_null() -> void:
 	_shader_manager._pool_count = 0
 
 	# Act
-	var result := _shader_manager.get_material(&"nonexistent")
+	var result = _shader_manager.get_material(&"nonexistent")
 
 	# Assert
 	assert_object(result).is_null()
@@ -41,7 +41,7 @@ func test_get_material_empty_name_returns_null() -> void:
 	_shader_manager._material_pool.clear()
 	_shader_manager._pool_count = 0
 
-	var result := _shader_manager.get_material(&"")
+	var result = _shader_manager.get_material(&"")
 
 	assert_object(result).is_null()
 
@@ -49,10 +49,10 @@ func test_get_material_empty_name_returns_null() -> void:
 ## AC-8c: 已存在的名称 → 返回正确材质。
 func test_get_material_existing_returns_material() -> void:
 	# Arrange — 先创建一个材质
-	var created := _shader_manager.get_material(&"test_mat")
+	var created = _shader_manager.get_material(&"test_mat")
 
 	# Act — 再次查询同名
-	var retrieved := _shader_manager.get_material(&"test_mat")
+	var retrieved = _shader_manager.get_material(&"test_mat")
 
 	# Assert
 	assert_object(retrieved).is_not_null()
@@ -73,7 +73,7 @@ func test_pool_full_rejects_new_material() -> void:
 		_shader_manager.get_material(name)
 
 	# Act — 尝试创建第 MAX_POOL_SIZE+1 个
-	var overflow := _shader_manager.get_material(&"overflow_mat")
+	var overflow = _shader_manager.get_material(&"overflow_mat")
 
 	# Assert
 	assert_object(overflow).is_null()
@@ -87,7 +87,7 @@ func test_pool_full_still_returns_existing() -> void:
 		_shader_manager.get_material(StringName("mat_%d" % i))
 
 	# 已存在的材质应仍可获取
-	var existing := _shader_manager.get_material(&"mat_0")
+	var existing = _shader_manager.get_material(&"mat_0")
 	assert_object(existing).is_not_null()
 
 
@@ -99,7 +99,7 @@ func test_pool_usage_tracks_count() -> void:
 	_shader_manager.get_material(&"a")
 	_shader_manager.get_material(&"b")
 
-	var usage := _shader_manager.get_pool_usage()
+	var usage = _shader_manager.get_pool_usage()
 	assert_int(usage[0]).is_equal(2)
 	assert_int(usage[1]).is_equal(ShaderManager.MAX_POOL_SIZE)
 
@@ -113,7 +113,7 @@ func test_create_trail_material_sets_parameters() -> void:
 	var color := Color("#D4A843")
 	var alpha := 0.8
 
-	var mat := _shader_manager.create_trail_material(color, alpha)
+	var mat = _shader_manager.create_trail_material(color, alpha)
 
 	assert_object(mat).is_not_null()
 	var trail_color: Vector3 = mat.get_shader_parameter("trail_color")
@@ -130,8 +130,8 @@ func test_create_trail_material_same_params_returns_same_instance() -> void:
 	var color := Color("#D4A843")
 	var alpha := 0.8
 
-	var mat1 := _shader_manager.create_trail_material(color, alpha)
-	var mat2 := _shader_manager.create_trail_material(color, alpha)
+	var mat1 = _shader_manager.create_trail_material(color, alpha)
+	var mat2 = _shader_manager.create_trail_material(color, alpha)
 
 	assert_object(mat1).is_same(mat2)
 
@@ -141,7 +141,7 @@ func test_create_trail_material_alpha_zero() -> void:
 	var color := Color("#1A1A2E")
 	var alpha := 0.0
 
-	var mat := _shader_manager.create_trail_material(color, alpha)
+	var mat = _shader_manager.create_trail_material(color, alpha)
 
 	assert_object(mat).is_not_null()
 	var trail_alpha: float = mat.get_shader_parameter("trail_alpha")
@@ -150,8 +150,8 @@ func test_create_trail_material_alpha_zero() -> void:
 
 ## 不同颜色/透明度 → 返回不同实例。
 func test_create_trail_material_different_params_different_instance() -> void:
-	var mat1 := _shader_manager.create_trail_material(Color("#D4A843"), 0.8)
-	var mat2 := _shader_manager.create_trail_material(Color("#1A1A2E"), 0.6)
+	var mat1 = _shader_manager.create_trail_material(Color("#D4A843"), 0.8)
+	var mat2 = _shader_manager.create_trail_material(Color("#1A1A2E"), 0.6)
 
 	assert_object(mat1).is_not_same(mat2)
 
@@ -219,7 +219,7 @@ func test_ink_step_formula_steps_2_boundary() -> void:
 func test_set_character_highlight_updates_material() -> void:
 	_shader_manager.set_character_highlight(0.5)
 
-	var mat := _shader_manager.get_material(&"character_default")
+	var mat = _shader_manager.get_material(&"character_default")
 	assert_object(mat).is_not_null()
 	var intensity: float = mat.get_shader_parameter("highlight_intensity")
 	assert_float(intensity).is_equal(0.5)
@@ -228,7 +228,7 @@ func test_set_character_highlight_updates_material() -> void:
 ## 高光强度 clamp 到 [0, 1]。
 func test_set_character_highlight_clamps_range() -> void:
 	_shader_manager.set_character_highlight(1.5)
-	var mat := _shader_manager.get_material(&"character_default")
+	var mat = _shader_manager.get_material(&"character_default")
 	var intensity: float = mat.get_shader_parameter("highlight_intensity")
 	assert_float(intensity).is_equal(1.0)
 

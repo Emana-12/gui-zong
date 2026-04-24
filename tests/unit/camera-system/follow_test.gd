@@ -108,7 +108,7 @@ func test_no_target_no_crash() -> void:
 
 func test_get_camera_position() -> void:
 	_camera.global_position = Vector3(1.0, 6.0, 2.0)
-	var pos := _camera.get_camera_position()
+	var pos = _camera.get_camera_position()
 	assert_vector(pos).is_equal(Vector3(1.0, 6.0, 2.0))
 
 
@@ -140,7 +140,7 @@ func test_inactive_state_freezes_follow() -> void:
 # ── Helpers ──────────────────────────────────────────────────────────────
 
 func _create_mock_gsm() -> Node:
-	var mock := _MockGameStateManager.new()
+	var mock = _MockGameStateManager.new()
 	return mock
 
 

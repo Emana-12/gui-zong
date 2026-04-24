@@ -32,7 +32,7 @@ func test_initial_state_is_title() -> void:
 ## AC-2: TITLE→COMBAT 转换发出 state_changed(TITLE, COMBAT) 信号，返回 true
 ## =========================================================================
 func test_title_to_combat_emits_signal() -> void:
-	var signal_monitor := monitor_signals(_manager)
+	var signal_monitor = monitor_signals(_manager)
 	var result: bool = _manager.change_state(GameStateManager.State.COMBAT)
 
 	assert_bool(result).is_true()
@@ -47,7 +47,7 @@ func test_title_to_combat_emits_signal() -> void:
 ## AC-3: COMBAT→DEATH 转换发出 state_changed(COMBAT, DEATH) 信号
 ## =========================================================================
 func test_combat_to_death_emits_signal() -> void:
-	var signal_monitor := monitor_signals(_manager)
+	var signal_monitor = monitor_signals(_manager)
 
 	# 先转到 COMBAT
 	_manager.change_state(GameStateManager.State.COMBAT)

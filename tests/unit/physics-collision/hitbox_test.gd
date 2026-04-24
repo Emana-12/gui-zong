@@ -66,7 +66,7 @@ func test_sword_hitbox_overlaps_enemy_hurtbox_triggers_collision_detected() -> v
 	enemy_area.global_position = Vector3(0, 0, 0)
 
 	# 监听信号
-	var signal_monitor := monitor_signals(physics_system)
+	var signal_monitor = monitor_signals(physics_system)
 
 	# 执行：等待物理帧处理
 	await physics_process_frame()
@@ -105,7 +105,7 @@ func test_player_invincibility_still_detects_collision() -> void:
 	player_area.global_position = Vector3(0, 0, 0)
 
 	# 监听信号
-	var signal_monitor := monitor_signals(physics_system)
+	var signal_monitor = monitor_signals(physics_system)
 
 	# 执行：等待物理帧处理
 	await physics_process_frame()

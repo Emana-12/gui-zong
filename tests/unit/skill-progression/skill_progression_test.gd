@@ -26,14 +26,14 @@ func test_avg_combo_length() -> void:
 	_progression.on_combo_broken(5)
 	_progression.on_combo_broken(10)
 	_progression.on_combo_broken(15)
-	var metrics := _progression.get_current_metrics()
+	var metrics = _progression.get_current_metrics()
 	assert_float(metrics.get_avg_combo_length()).is_equal(10.0)
 
 
 ## AC-1b: 连击 = 0 不记录
 func test_combo_zero_no_record() -> void:
 	_progression.on_combo_broken(0)
-	var metrics := _progression.get_current_metrics()
+	var metrics = _progression.get_current_metrics()
 	assert_int(metrics.combo_break_count).is_equal(0)
 
 
@@ -46,13 +46,13 @@ func test_dodge_success_rate() -> void:
 		_progression.on_dodge_attempt(true)
 	for i in 3:
 		_progression.on_dodge_attempt(false)
-	var metrics := _progression.get_current_metrics()
+	var metrics = _progression.get_current_metrics()
 	assert_float(metrics.get_dodge_success_rate()).is_equal(0.7)
 
 
 ## AC-2b: 无闪避记录 → 成功率 = 0
 func test_dodge_no_attempts() -> void:
-	var metrics := _progression.get_current_metrics()
+	var metrics = _progression.get_current_metrics()
 	assert_float(metrics.get_dodge_success_rate()).is_equal(0.0)
 
 
@@ -66,7 +66,7 @@ func test_myriad_frequency() -> void:
 	_progression.on_myriad_triggered()
 	_progression.on_myriad_triggered()
 	_progression.on_myriad_triggered()
-	var metrics := _progression.get_current_metrics()
+	var metrics = _progression.get_current_metrics()
 	# 手动设置时长以绕过 _ready 时间戳
 	metrics.game_duration_sec = 120.0
 	assert_float(metrics.get_myriad_frequency()).is_equal(1.5)
@@ -75,7 +75,7 @@ func test_myriad_frequency() -> void:
 ## AC-3b: 游戏时长 < 1 分钟 → 频率 = 0
 func test_myriad_frequency_short_game() -> void:
 	_progression.on_myriad_triggered()
-	var metrics := _progression.get_current_metrics()
+	var metrics = _progression.get_current_metrics()
 	metrics.game_duration_sec = 30.0
 	assert_float(metrics.get_myriad_frequency()).is_equal(0.0)
 
@@ -98,7 +98,7 @@ func test_trend_calculation() -> void:
 	_progression.on_combo_broken(10)
 	_progression.on_combo_broken(10)
 
-	var trend := _progression.get_progression_trend()
+	var trend = _progression.get_progression_trend()
 	assert_object(trend).is_not_null()
 	assert_float(trend.combo_trend).is_greater(0.0)
 
@@ -113,7 +113,7 @@ func test_history_max_10() -> void:
 ## AC-6: get_progression_trend() 返回趋势可视化数据
 func test_trend_has_all_fields() -> void:
 	_progression._test_add_history(5.0, 0.5, 1.0)
-	var trend := _progression.get_progression_trend()
+	var trend = _progression.get_progression_trend()
 	assert_object(trend).is_not_null()
 	# combo_trend, dodge_trend, myriad_trend 存在
 	assert_bool(trend is SkillProgression.ProgressionTrend).is_true()
@@ -131,17 +131,17 @@ func test_end_session_saves_and_resets() -> void:
 func test_history_snapshots() -> void:
 	_progression._test_add_history(5.0, 0.5, 1.0)
 	_progression._test_add_history(8.0, 0.7, 2.0)
-	var snapshots := _progression.get_history_snapshots(1)
+	var snapshots = _progression.get_history_snapshots(1)
 	assert_int(snapshots.size()).is_equal(1)
 
 
 ## AC-Edge: 连击中断次数 = 0 → 平均连击长度 = 0（避免除零）
 func test_no_combo_breaks_avg_zero() -> void:
-	var metrics := _progression.get_current_metrics()
+	var metrics = _progression.get_current_metrics()
 	assert_float(metrics.get_avg_combo_length()).is_equal(0.0)
 
 
 ## AC-Edge: 总闪避次数 = 0 → 闪避成功率 = 0
 func test_no_dodges_rate_zero() -> void:
-	var metrics := _progression.get_current_metrics()
+	var metrics = _progression.get_current_metrics()
 	assert_float(metrics.get_dodge_success_rate()).is_equal(0.0)

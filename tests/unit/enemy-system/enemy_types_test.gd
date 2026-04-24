@@ -39,7 +39,7 @@ func test_pine_counter_form() -> void:
 	assert_int(EnemySystem.ENEMY_TYPE_DATA["pine"]["counter_form"]).is_equal(3)
 
 func test_pine_spawn_alive() -> void:
-	var id := _enemy_system.spawn_enemy("pine", Vector3(5, 0, 0))
+	var id = _enemy_system.spawn_enemy("pine", Vector3(5, 0, 0))
 	assert_int(id).is_greater_equal(0)
 	assert_bool(_enemy_system.is_alive(id)).is_true()
 
@@ -62,7 +62,7 @@ func test_stone_counter_form() -> void:
 	assert_int(EnemySystem.ENEMY_TYPE_DATA["stone"]["counter_form"]).is_equal(2)
 
 func test_stone_spawn_alive() -> void:
-	var id := _enemy_system.spawn_enemy("stone", Vector3(5, 0, 0))
+	var id = _enemy_system.spawn_enemy("stone", Vector3(5, 0, 0))
 	assert_bool(_enemy_system.is_alive(id)).is_true()
 
 
@@ -81,7 +81,7 @@ func test_water_counter_form() -> void:
 	assert_int(EnemySystem.ENEMY_TYPE_DATA["water"]["counter_form"]).is_equal(1)
 
 func test_water_spawn_alive() -> void:
-	var id := _enemy_system.spawn_enemy("water", Vector3(5, 0, 0))
+	var id = _enemy_system.spawn_enemy("water", Vector3(5, 0, 0))
 	assert_bool(_enemy_system.is_alive(id)).is_true()
 
 
@@ -89,9 +89,9 @@ func test_water_spawn_alive() -> void:
 
 ## 各类型独立 take_damage
 func test_each_type_independent_damage() -> void:
-	var pine_id := _enemy_system.spawn_enemy("pine", Vector3(3, 0, 0))
-	var stone_id := _enemy_system.spawn_enemy("stone", Vector3(6, 0, 0))
-	var water_id := _enemy_system.spawn_enemy("water", Vector3(9, 0, 0))
+	var pine_id = _enemy_system.spawn_enemy("pine", Vector3(3, 0, 0))
+	var stone_id = _enemy_system.spawn_enemy("stone", Vector3(6, 0, 0))
+	var water_id = _enemy_system.spawn_enemy("water", Vector3(9, 0, 0))
 
 	_enemy_system.take_damage(pine_id, 2)
 	_enemy_system.take_damage(stone_id, 3)
@@ -104,8 +104,8 @@ func test_each_type_independent_damage() -> void:
 
 ## 各类型独立死亡
 func test_each_type_independent_death() -> void:
-	var pine_id := _enemy_system.spawn_enemy("pine", Vector3(3, 0, 0))
-	var water_id := _enemy_system.spawn_enemy("water", Vector3(9, 0, 0))
+	var pine_id = _enemy_system.spawn_enemy("pine", Vector3(3, 0, 0))
+	var water_id = _enemy_system.spawn_enemy("water", Vector3(9, 0, 0))
 
 	_enemy_system.take_damage(pine_id, 5)
 	_enemy_system.take_damage(water_id, 3)
@@ -132,16 +132,16 @@ func test_simultaneous_death_independent_signals() -> void:
 
 ## GDD Edge Case #2 — 生成位置与玩家重叠 → 自动推离 2m
 func test_spawn_overlap_pushes_away() -> void:
-	var id := _enemy_system.spawn_enemy("pine", Vector3(0.5, 0, 0))
-	var pos := _enemy_system.get_enemy_position(id)
+	var id = _enemy_system.spawn_enemy("pine", Vector3(0.5, 0, 0))
+	var pos = _enemy_system.get_enemy_position(id)
 	var dist := pos.distance_to(Vector3.ZERO)
 	assert_float(dist).is_greater_equal(2.0)
 
 
 ## get_enemy_type 正确返回类型名
 func test_get_enemy_type() -> void:
-	var pine_id := _enemy_system.spawn_enemy("pine", Vector3(3, 0, 0))
-	var stone_id := _enemy_system.spawn_enemy("stone", Vector3(6, 0, 0))
+	var pine_id = _enemy_system.spawn_enemy("pine", Vector3(3, 0, 0))
+	var stone_id = _enemy_system.spawn_enemy("stone", Vector3(6, 0, 0))
 	assert_str(_enemy_system.get_enemy_type(pine_id)).is_equal("pine")
 	assert_str(_enemy_system.get_enemy_type(stone_id)).is_equal("stone")
 
@@ -153,13 +153,13 @@ func test_get_enemy_type_invalid() -> void:
 
 ## 未知类型生成返回 -1
 func test_spawn_unknown_type_fails() -> void:
-	var id := _enemy_system.spawn_enemy("nonexistent", Vector3.ZERO)
+	var id = _enemy_system.spawn_enemy("nonexistent", Vector3.ZERO)
 	assert_int(id).is_equal(-1)
 
 
 ## DEATH 状态下 AI 更新不崩溃
 func test_death_state_ai_frozen() -> void:
-	var id := _enemy_system.spawn_enemy("water", Vector3(1, 0, 0))
+	var id = _enemy_system.spawn_enemy("water", Vector3(1, 0, 0))
 	_enemy_system.take_damage(id, 99)
 	_enemy_system.update_enemy_ai(id, 0.016)
 	assert_bool(_enemy_system.is_alive(id)).is_false()

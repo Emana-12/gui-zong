@@ -73,7 +73,7 @@ func test_you_form_process_collision_deals_1_damage() -> void:
 	var collision := _make_collision(_attacker, _target, 100)
 
 	# Act
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	# Assert
 	assert_int(result.damage).is_equal(1)
@@ -94,7 +94,7 @@ func test_zuan_form_process_collision_deals_3_damage() -> void:
 	var collision := _make_collision(_attacker, _target, 200)
 
 	# Act
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.ZUAN)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.ZUAN)
 
 	# Assert
 	assert_int(result.damage).is_equal(3)
@@ -115,7 +115,7 @@ func test_rao_form_process_collision_deals_2_damage() -> void:
 	var collision := _make_collision(_attacker, _target, 300)
 
 	# Act
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.RAO)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.RAO)
 
 	# Assert
 	assert_int(result.damage).is_equal(2)
@@ -137,10 +137,10 @@ func test_same_hitbox_same_target_second_hit_returns_null() -> void:
 	var collision := _make_collision(_attacker, _target, hitbox_id)
 
 	# Act — 第一次命中（应成功）
-	var first_result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var first_result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	# Act — 第二次命中（同 hitbox 同 target，应被去重过滤）
-	var second_result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var second_result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	# Assert
 	assert_object(first_result).is_not_null()
@@ -151,7 +151,7 @@ func test_same_hitbox_same_target_second_hit_returns_null() -> void:
 func test_is_already_hit_returns_true_after_register() -> void:
 	# Arrange
 	var hitbox_id := 500
-	var target_id := _target.get_instance_id()
+	var target_id = _target.get_instance_id()
 
 	# Act
 	_hit_judgment.register_hit(hitbox_id, target_id)
@@ -163,7 +163,7 @@ func test_is_already_hit_returns_true_after_register() -> void:
 ## AC-4c: is_already_hit 未注册时返回 false。
 func test_is_already_hit_returns_false_before_register() -> void:
 	var hitbox_id := 600
-	var target_id := _target.get_instance_id()
+	var target_id = _target.get_instance_id()
 
 	assert_bool(_hit_judgment.is_already_hit(hitbox_id, target_id)).is_false()
 
@@ -178,8 +178,8 @@ func test_same_hitbox_different_targets_both_valid() -> void:
 	var collision_b := _make_collision(_attacker, other_target, hitbox_id)
 
 	# Act
-	var result_a := _hit_judgment.process_collision(collision_a, _attacker, HitJudgment.SwordForm.YOU)
-	var result_b := _hit_judgment.process_collision(collision_b, _attacker, HitJudgment.SwordForm.YOU)
+	var result_a = _hit_judgment.process_collision(collision_a, _attacker, HitJudgment.SwordForm.YOU)
+	var result_b = _hit_judgment.process_collision(collision_b, _attacker, HitJudgment.SwordForm.YOU)
 
 	# Assert
 	assert_object(result_a).is_not_null()
@@ -199,7 +199,7 @@ func test_clear_hit_records_allows_same_target_hit_again() -> void:
 	_hit_judgment.clear_hit_records(hitbox_id)
 
 	# 第二次命中（清记录后应成功）
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	# Assert
 	assert_object(result).is_not_null()

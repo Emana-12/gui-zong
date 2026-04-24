@@ -165,7 +165,7 @@ func test_tuning_metrics_kill_enemy_died_increments_count() -> void:
 ## 快照生成: get_snapshot 应返回非空字典
 func test_tuning_metrics_snapshot_returns_valid_dictionary() -> void:
 	# Act
-	var snapshot := _metrics.get_snapshot()
+	var snapshot = _metrics.get_snapshot()
 
 	# Assert
 	assert_bool(snapshot.has("session_seconds")).is_true()
@@ -197,7 +197,7 @@ func test_tuning_metrics_reset_clears_all_stats() -> void:
 ## JSON 导出: export_json 应返回有效 JSON 字符串
 func test_tuning_metrics_export_json_returns_valid_json() -> void:
 	# Act
-	var json_str := _metrics.export_json()
+	var json_str = _metrics.export_json()
 
 	# Assert
 	assert_bool(json_str.length() > 0).is_true()

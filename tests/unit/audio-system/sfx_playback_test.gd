@@ -37,7 +37,7 @@ func test_play_sfx_missing_file_no_crash() -> void:
 
 ## 验证 _get_or_load_sfx 返回 null 对于不存在的文件
 func test_get_or_load_sfx_missing_returns_null() -> void:
-	var result := _audio_manager._get_or_load_sfx(&"nonexistent_sfx")
+	var result = _audio_manager._get_or_load_sfx(&"nonexistent_sfx")
 	assert_object(result).is_null()
 
 
@@ -59,7 +59,7 @@ func test_play_sfx_pitch_clamp() -> void:
 
 ## 验证预加载缓存为空
 func test_sfx_cache_initial_empty() -> void:
-	var preloaded := _audio_manager.get_preloaded_sfx()
+	var preloaded = _audio_manager.get_preloaded_sfx()
 	assert_int(preloaded.size()).is_equal(0)
 
 

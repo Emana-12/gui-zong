@@ -70,7 +70,7 @@ func test_valid_hit_returns_hit_result() -> void:
 	var collision := _make_collision(_attacker, _target)
 
 	# Act
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	# Assert
 	assert_object(result).is_not_null()
@@ -81,7 +81,7 @@ func test_valid_hit_result_has_correct_fields() -> void:
 	_target.set_invincible(false)
 	var collision := _make_collision(_attacker, _target)
 
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	assert_object(result.attacker).is_equal(_attacker)
 	assert_object(result.target).is_equal(_target)
@@ -94,25 +94,25 @@ func test_valid_hit_result_has_correct_fields() -> void:
 ## AC-1c: 各剑招伤害值正确。
 func test_you_form_deals_1_damage() -> void:
 	var collision := _make_collision(_attacker, _target)
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 	assert_int(result.damage).is_equal(1)
 
 
 func test_zuan_form_deals_3_damage() -> void:
 	var collision := _make_collision(_attacker, _target, 1)
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.ZUAN)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.ZUAN)
 	assert_int(result.damage).is_equal(3)
 
 
 func test_rao_form_deals_2_damage() -> void:
 	var collision := _make_collision(_attacker, _target, 2)
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.RAO)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.RAO)
 	assert_int(result.damage).is_equal(2)
 
 
 func test_enemy_form_deals_1_damage() -> void:
 	var collision := _make_collision(_attacker, _target, 3)
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.ENEMY)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.ENEMY)
 	assert_int(result.damage).is_equal(1)
 
 
@@ -121,7 +121,7 @@ func test_material_type_body_detected() -> void:
 	_target.set_groups([&"enemies"])
 	var collision := _make_collision(_attacker, _target, 4)
 
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	assert_that(result.material_type).is_equal(&"body")
 
@@ -131,7 +131,7 @@ func test_material_type_metal_detected() -> void:
 	_target.set_groups([&"environment_metal"])
 	var collision := _make_collision(_attacker, _target, 5)
 
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	assert_that(result.material_type).is_equal(&"metal")
 
@@ -141,7 +141,7 @@ func test_material_type_defaults_to_body() -> void:
 	_target.set_groups([])
 	var collision := _make_collision(_attacker, _target, 6)
 
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	assert_that(result.material_type).is_equal(&"body")
 
@@ -157,7 +157,7 @@ func test_invincible_target_returns_null() -> void:
 	var collision := _make_collision(_attacker, _target, 10)
 
 	# Act
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	# Assert
 	assert_object(result).is_null()
@@ -208,7 +208,7 @@ func test_self_hit_returns_null() -> void:
 	var collision := _make_collision(_attacker, _attacker, 20)
 
 	# Act
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	# Assert
 	assert_object(result).is_null()
@@ -281,7 +281,7 @@ func test_duplicate_hit_returns_null() -> void:
 	_hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	# 第二次命中（同 hitbox 同 target）
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	assert_object(result).is_null()
 
@@ -294,7 +294,7 @@ func test_clear_hit_records_allows_second_hit() -> void:
 	_hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 	_hit_judgment.clear_hit_records(hitbox_id)
 
-	var result := _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
+	var result = _hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.YOU)
 
 	assert_object(result).is_not_null()
 
@@ -304,8 +304,8 @@ func test_different_hitboxes_can_hit_same_target() -> void:
 	var collision_a := _make_collision(_attacker, _target, 60)
 	var collision_b := _make_collision(_attacker, _target, 61)
 
-	var result_a := _hit_judgment.process_collision(collision_a, _attacker, HitJudgment.SwordForm.YOU)
-	var result_b := _hit_judgment.process_collision(collision_b, _attacker, HitJudgment.SwordForm.YOU)
+	var result_a = _hit_judgment.process_collision(collision_a, _attacker, HitJudgment.SwordForm.YOU)
+	var result_b = _hit_judgment.process_collision(collision_b, _attacker, HitJudgment.SwordForm.YOU)
 
 	assert_object(result_a).is_not_null()
 	assert_object(result_b).is_not_null()
@@ -322,7 +322,7 @@ func test_get_last_hit_returns_most_recent() -> void:
 
 	_hit_judgment.process_collision(collision, _attacker, HitJudgment.SwordForm.RAO)
 
-	var last := _hit_judgment.get_last_hit()
+	var last = _hit_judgment.get_last_hit()
 	assert_object(last).is_not_null()
 	assert_int(last.sword_form).is_equal(HitJudgment.SwordForm.RAO)
 	assert_int(last.damage).is_equal(2)
@@ -339,7 +339,7 @@ func test_calculate_damage_returns_correct_values() -> void:
 ## register_hit / is_already_hit 正常工作。
 func test_register_and_check_hit() -> void:
 	var hitbox_id := 80
-	var target_id := _target.get_instance_id()
+	var target_id = _target.get_instance_id()
 
 	assert_bool(_hit_judgment.is_already_hit(hitbox_id, target_id)).is_false()
 

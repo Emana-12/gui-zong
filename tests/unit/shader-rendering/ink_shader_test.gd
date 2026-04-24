@@ -49,14 +49,14 @@ func test_shader_code_not_empty() -> void:
 
 ## character_default 材质使用正确的着色器。
 func test_character_default_uses_ink_character_shader() -> void:
-	var mat := _shader_manager.get_material(&"character_default")
+	var mat = _shader_manager.get_material(&"character_default")
 	assert_object(mat).is_not_null()
 	assert_object(mat.shader).is_same(ShaderManager.SHD_INK_CHARACTER)
 
 
 ## character_default 的 highlight_intensity 默认值为 0.0。
 func test_character_default_highlight_intensity_default() -> void:
-	var mat := _shader_manager.get_material(&"character_default")
+	var mat = _shader_manager.get_material(&"character_default")
 	var intensity: float = mat.get_shader_parameter("highlight_intensity")
 	assert_float(intensity).is_equal(0.0)
 
@@ -65,7 +65,7 @@ func test_character_default_highlight_intensity_default() -> void:
 func test_character_highlight_intensity_set() -> void:
 	_shader_manager.set_character_highlight(0.75)
 
-	var mat := _shader_manager.get_material(&"character_default")
+	var mat = _shader_manager.get_material(&"character_default")
 	var intensity: float = mat.get_shader_parameter("highlight_intensity")
 	assert_float(intensity).is_equal(0.75)
 
@@ -76,14 +76,14 @@ func test_character_highlight_intensity_set() -> void:
 
 ## environment_default 材质使用正确的着色器。
 func test_environment_default_uses_ink_environment_shader() -> void:
-	var mat := _shader_manager.get_material(&"environment_default")
+	var mat = _shader_manager.get_material(&"environment_default")
 	assert_object(mat).is_not_null()
 	assert_object(mat.shader).is_same(ShaderManager.SHD_INK_ENVIRONMENT)
 
 
 ## environment_degraded 材质使用正确的着色器。
 func test_environment_degraded_uses_ink_environment_shader() -> void:
-	var mat := _shader_manager.get_material(&"environment_degraded")
+	var mat = _shader_manager.get_material(&"environment_degraded")
 	assert_object(mat).is_not_null()
 	assert_object(mat.shader).is_same(ShaderManager.SHD_INK_ENVIRONMENT)
 
@@ -94,7 +94,7 @@ func test_environment_degraded_uses_ink_environment_shader() -> void:
 
 ## 角色着色器 ink_edge_softness 参数在材质上可读取。
 func test_character_shader_has_ink_edge_softness() -> void:
-	var mat := _shader_manager.get_material(&"character_default")
+	var mat = _shader_manager.get_material(&"character_default")
 	# 默认值应为 0.2（根据着色器定义）
 	var softness: float = mat.get_shader_parameter("ink_edge_softness")
 	assert_float(softness).is_equal(0.2)
@@ -102,21 +102,21 @@ func test_character_shader_has_ink_edge_softness() -> void:
 
 ## 角色着色器 rim_light_power 参数在材质上可读取。
 func test_character_shader_has_rim_light_power() -> void:
-	var mat := _shader_manager.get_material(&"character_default")
+	var mat = _shader_manager.get_material(&"character_default")
 	var power: float = mat.get_shader_parameter("rim_light_power")
 	assert_float(power).is_equal(3.0)
 
 
 ## 环境着色器 ink_steps 参数默认值为 4。
 func test_environment_shader_ink_steps_default() -> void:
-	var mat := _shader_manager.get_material(&"environment_default")
+	var mat = _shader_manager.get_material(&"environment_default")
 	var steps: int = mat.get_shader_parameter("ink_steps")
 	assert_int(steps).is_equal(4)
 
 
 ## 环境着色器 ink_steps 可修改。
 func test_environment_shader_ink_steps_settable() -> void:
-	var mat := _shader_manager.get_material(&"environment_default")
+	var mat = _shader_manager.get_material(&"environment_default")
 	mat.set_shader_parameter("ink_steps", 2)
 	var steps: int = mat.get_shader_parameter("ink_steps")
 	assert_int(steps).is_equal(2)

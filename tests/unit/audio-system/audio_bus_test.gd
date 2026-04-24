@@ -39,7 +39,7 @@ func test_init_audio_context_idempotent() -> void:
 func test_set_bus_volume_clamp() -> void:
 	# 使用 SFX 总线做测试
 	_audio_manager.set_bus_volume(AudioManager.SFX_BUS, 1.5)
-	var vol := _audio_manager.get_bus_volume(AudioManager.SFX_BUS)
+	var vol = _audio_manager.get_bus_volume(AudioManager.SFX_BUS)
 	assert_float(vol).is_less_equal(1.0)
 
 	_audio_manager.set_bus_volume(AudioManager.SFX_BUS, -0.5)
@@ -50,7 +50,7 @@ func test_set_bus_volume_clamp() -> void:
 ## 验证 set_bus_volume 0.5 约等于 -6dB
 func test_set_bus_volume_half() -> void:
 	_audio_manager.set_bus_volume(AudioManager.SFX_BUS, 0.5)
-	var vol := _audio_manager.get_bus_volume(AudioManager.SFX_BUS)
+	var vol = _audio_manager.get_bus_volume(AudioManager.SFX_BUS)
 	# 0.5 线性 -> -6.02dB，转回来应该接近 0.5
 	assert_float(vol).is_equal_approx(0.5, 0.01)
 

@@ -39,7 +39,7 @@ func before_test() -> void:
 ## =========================================================================
 
 func test_start_wave_emits_wave_started() -> void:
-	var monitor := await monitor_signals(_wave_system)
+	var monitor = await monitor_signals(_wave_system)
 	_wave_system.start_wave(1)
 	await assert_signal(monitor).is_emitted("wave_started")
 
@@ -90,7 +90,7 @@ func test_enemy_died_releases_spawn_queue() -> void:
 	assert_int(_wave_system.get_spawn_queue_size()).is_equal(8)
 
 	# Kill one enemy
-	var enemies := _mock_enemy_system.get_all_enemies()
+	var enemies = _mock_enemy_system.get_all_enemies()
 	if enemies.size() > 0:
 		_mock_enemy_system.take_damage(enemies[0].id, 999)
 
@@ -108,7 +108,7 @@ func test_enemy_died_releases_spawn_queue() -> void:
 ## =========================================================================
 
 func test_all_enemies_die_completes_wave() -> void:
-	var monitor := await monitor_signals(_wave_system)
+	var monitor = await monitor_signals(_wave_system)
 	_wave_system.start_wave(1)
 	_mock_enemy_system.kill_all()
 	await get_tree().process_frame
@@ -138,7 +138,7 @@ func test_wan_jian_qui_zong_instant_kill_completes_wave() -> void:
 
 func test_kills_increment_on_enemy_death() -> void:
 	_wave_system.start_wave(5)
-	var enemies := _mock_enemy_system.get_all_enemies()
+	var enemies = _mock_enemy_system.get_all_enemies()
 	if enemies.size() > 0:
 		_mock_enemy_system.take_damage(enemies[0].id, 999)
 	await get_tree().process_frame
@@ -152,7 +152,7 @@ func test_kills_increment_on_enemy_death() -> void:
 ## =========================================================================
 
 func test_intermission_started_after_wave_complete() -> void:
-	var monitor := await monitor_signals(_wave_system)
+	var monitor = await monitor_signals(_wave_system)
 	_wave_system.start_wave(1)
 	_mock_enemy_system.kill_all()
 	await get_tree().process_frame
@@ -163,7 +163,7 @@ func test_intermission_timer_starts() -> void:
 	_wave_system.start_wave(1)
 	_mock_enemy_system.kill_all()
 	await get_tree().process_frame
-	var timer := _wave_system._test_get_intermission_timer()
+	var timer = _wave_system._test_get_intermission_timer()
 	assert_bool(timer.is_stopped()).is_false()
 
 
@@ -183,7 +183,7 @@ func test_reset_waves_stops_timers() -> void:
 	_mock_enemy_system.kill_all()
 	await get_tree().process_frame
 	_wave_system.reset_waves()
-	var timer := _wave_system._test_get_intermission_timer()
+	var timer = _wave_system._test_get_intermission_timer()
 	assert_bool(timer.is_stopped()).is_true()
 
 
@@ -221,7 +221,7 @@ func test_set_game_state_manager_injects_reference() -> void:
 
 func test_set_rng_seed_is_deterministic() -> void:
 	_wave_system.set_rng_seed(123)
-	var types_a := _wave_system._generate_enemy_types(5, 10)
+	var types_a = _wave_system._generate_enemy_types(5, 10)
 	_wave_system.set_rng_seed(123)
-	var types_b := _wave_system._generate_enemy_types(5, 10)
+	var types_b = _wave_system._generate_enemy_types(5, 10)
 	assert_array(types_a).is_equal(types_b)

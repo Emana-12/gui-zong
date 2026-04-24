@@ -244,7 +244,7 @@ func test_hide_menu_empty_stack_safe() -> void:
 ## AC-12: show_menu() 发出 menu_opened 信号
 ## =========================================================================
 func test_show_menu_emits_signal() -> void:
-	var signal_monitor := monitor_signals(_hud)
+	var signal_monitor = monitor_signals(_hud)
 
 	var fake_menu: Panel = auto_free(Panel.new())
 	_hud._menu_nodes["test"] = fake_menu
@@ -263,7 +263,7 @@ func test_hide_menu_emits_signal() -> void:
 	_hud._menu_nodes["test"] = fake_menu
 	_hud.show_menu("test")
 
-	var signal_monitor := monitor_signals(_hud)
+	var signal_monitor = monitor_signals(_hud)
 
 	# Act
 	_hud.hide_menu()

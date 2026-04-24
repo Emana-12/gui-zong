@@ -62,15 +62,15 @@ func test_wave0_returns_two() -> void:
 ## =========================================================================
 
 func test_wave1_only_flow_available() -> void:
-	var types := _wave_system._generate_enemy_types(1, 10)
+	var types = _wave_system._generate_enemy_types(1, 10)
 	for enemy_type in types:
 		assert_str(enemy_type).is_equal("water")
 
 
 func test_wave2_has_flow_and_pine() -> void:
 	_wave_system.set_rng_seed(0)
-	var types := _wave_system._generate_enemy_types(2, 100)
-	var unique_types := {}
+	var types = _wave_system._generate_enemy_types(2, 100)
+	var unique_types: Dictionary = {}
 	for enemy_type in types:
 		unique_types[enemy_type] = true
 	assert_int(unique_types.size()).is_equal(2)
@@ -82,8 +82,8 @@ func test_wave2_has_flow_and_pine() -> void:
 
 func test_wave4_has_flow_pine_ranged() -> void:
 	_wave_system.set_rng_seed(0)
-	var types := _wave_system._generate_enemy_types(4, 100)
-	var unique_types := {}
+	var types = _wave_system._generate_enemy_types(4, 100)
+	var unique_types: Dictionary = {}
 	for enemy_type in types:
 		unique_types[enemy_type] = true
 	assert_int(unique_types.size()).is_equal(3)
@@ -94,8 +94,8 @@ func test_wave4_has_flow_pine_ranged() -> void:
 
 func test_wave6_has_four_types() -> void:
 	_wave_system.set_rng_seed(0)
-	var types := _wave_system._generate_enemy_types(6, 200)
-	var unique_types := {}
+	var types = _wave_system._generate_enemy_types(6, 200)
+	var unique_types: Dictionary = {}
 	for enemy_type in types:
 		unique_types[enemy_type] = true
 	assert_int(unique_types.size()).is_equal(4)
@@ -103,16 +103,16 @@ func test_wave6_has_four_types() -> void:
 
 func test_wave8_has_all_five_types() -> void:
 	_wave_system.set_rng_seed(0)
-	var types := _wave_system._generate_enemy_types(8, 500)
-	var unique_types := {}
+	var types = _wave_system._generate_enemy_types(8, 500)
+	var unique_types: Dictionary = {}
 	for enemy_type in types:
 		unique_types[enemy_type] = true
 	assert_int(unique_types.size()).is_equal(5)
 
 
 func test_generated_types_are_valid_enemy_types() -> void:
-	var valid_types := ["water", "pine", "ranged", "stone", "agile"]
-	var types := _wave_system._generate_enemy_types(10, 20)
+	var valid_types: Array = ["water", "pine", "ranged", "stone", "agile"]
+	var types = _wave_system._generate_enemy_types(10, 20)
 	for enemy_type in types:
 		assert_bool(valid_types.has(enemy_type)).is_true()
 

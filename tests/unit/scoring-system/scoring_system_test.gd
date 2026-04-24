@@ -103,7 +103,7 @@ func test_save_score_updates_when_better() -> void:
 	_scoring.on_myriad_triggered()
 	_scoring.save_score()
 
-	var best := _scoring.get_best_score()
+	var best = _scoring.get_best_score()
 	assert_int(best.highest_wave).is_equal(8)
 	assert_int(best.longest_combo).is_equal(12)
 	assert_int(best.myriad_count).is_equal(2)
@@ -119,7 +119,7 @@ func test_save_score_no_update_when_worse() -> void:
 	_scoring.on_wave_completed(5)
 	_scoring.save_score()
 
-	var best := _scoring.get_best_score()
+	var best = _scoring.get_best_score()
 	assert_int(best.highest_wave).is_equal(10)
 	assert_int(best.longest_combo).is_equal(15)
 	assert_int(best.myriad_count).is_equal(3)
@@ -135,7 +135,7 @@ func test_reset_current_clears_data() -> void:
 	_scoring.on_myriad_triggered()
 	_scoring.reset_current()
 
-	var current := _scoring.get_current_score()
+	var current = _scoring.get_current_score()
 	assert_int(current.highest_wave).is_equal(0)
 	assert_int(current.longest_combo).is_equal(0)
 	assert_int(current.myriad_count).is_equal(0)
@@ -147,7 +147,7 @@ func test_reset_current_clears_data() -> void:
 ## Then: 返回默认值 (0, 0, 0)
 func test_first_game_best_score_defaults() -> void:
 	# before_test 创建新实例，_load_best_score 找不到文件
-	var best := _scoring.get_best_score()
+	var best = _scoring.get_best_score()
 	assert_int(best.highest_wave).is_equal(0)
 	assert_int(best.longest_combo).is_equal(0)
 	assert_int(best.myriad_count).is_equal(0)

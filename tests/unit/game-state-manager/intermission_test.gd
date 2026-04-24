@@ -21,7 +21,7 @@ func before_test() -> void:
 func test_wave_completed_combat_to_intermission() -> void:
 	# Arrange
 	_manager.change_state(GameStateManager.State.COMBAT)
-	var signal_monitor := monitor_signals(_manager)
+	var signal_monitor = monitor_signals(_manager)
 
 	# Act
 	_manager._on_wave_completed(1)

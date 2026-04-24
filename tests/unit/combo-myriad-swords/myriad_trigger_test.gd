@@ -117,7 +117,7 @@ func test_trigger_myriad_at_zero_returns_false() -> void:
 
 ## 连击达到 20 时自动触发万剑归宗
 func test_auto_trigger_at_20_emits_signal() -> void:
-	var monitor := await monitor_signals(_combo)
+	var monitor = await monitor_signals(_combo)
 	_accumulate_combo_to(20)
 	await assert_signal(monitor).is_emitted("myriad_triggered")
 
@@ -248,7 +248,7 @@ func test_trigger_myriad_after_cooldown_ends() -> void:
 
 ## 连击增加时 charge_changed 信号发出
 func test_charge_changed_signal_emitted_on_combo_increase() -> void:
-	var monitor := await monitor_signals(_combo)
+	var monitor = await monitor_signals(_combo)
 	_combo.on_hit_landed(1)  # YOU, combo=1, progress=0.1
 	await assert_signal(monitor).is_emitted("charge_changed", [0.1])
 
@@ -256,7 +256,7 @@ func test_charge_changed_signal_emitted_on_combo_increase() -> void:
 ## 受击归零时 charge_changed 信号发出 0.0
 func test_charge_changed_signal_emitted_on_reset() -> void:
 	_accumulate_combo_to(5)
-	var monitor := await monitor_signals(_combo)
+	var monitor = await monitor_signals(_combo)
 	_combo.on_player_hit()
 	await assert_signal(monitor).is_emitted("charge_changed", [0.0])
 
@@ -265,7 +265,7 @@ func test_charge_changed_signal_emitted_on_reset() -> void:
 
 ## 手动触发时 myriad_triggered 信号发出
 func test_myriad_triggered_signal_emitted_on_manual() -> void:
-	var monitor := await monitor_signals(_combo)
+	var monitor = await monitor_signals(_combo)
 	_accumulate_combo_to(10)
 	_combo.trigger_myriad()
 	await assert_signal(monitor).is_emitted("myriad_triggered")

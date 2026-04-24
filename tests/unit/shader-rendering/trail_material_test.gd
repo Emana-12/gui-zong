@@ -39,14 +39,14 @@ func test_light_trail_shader_code_not_empty() -> void:
 
 ## 创建轨迹材质 → 使用正确的着色器。
 func test_trail_material_uses_light_trail_shader() -> void:
-	var mat := _shader_manager.create_trail_material(Color("#D4A843"), 0.8)
+	var mat = _shader_manager.create_trail_material(Color("#D4A843"), 0.8)
 	assert_object(mat.shader).is_same(ShaderManager.SHD_LIGHT_TRAIL)
 
 
 ## 轨迹材质 trail_color 参数正确设置。
 func test_trail_material_color_set_correctly() -> void:
 	var color := Color("#D4A843")
-	var mat := _shader_manager.create_trail_material(color, 0.8)
+	var mat = _shader_manager.create_trail_material(color, 0.8)
 
 	var trail_color: Vector3 = mat.get_shader_parameter("trail_color")
 	assert_float(trail_color.x).is_equal(color.r)
@@ -56,7 +56,7 @@ func test_trail_material_color_set_correctly() -> void:
 
 ## 轨迹材质 trail_alpha 参数正确设置。
 func test_trail_material_alpha_set_correctly() -> void:
-	var mat := _shader_manager.create_trail_material(Color("#D4A843"), 0.6)
+	var mat = _shader_manager.create_trail_material(Color("#D4A843"), 0.6)
 
 	var trail_alpha: float = mat.get_shader_parameter("trail_alpha")
 	assert_float(trail_alpha).is_equal(0.6)
@@ -69,7 +69,7 @@ func test_trail_material_alpha_set_correctly() -> void:
 ## 绕剑式 = 墨色轨迹 (#1A1A2E)。
 func test_rao_form_uses_dark_ink_color() -> void:
 	var rao_color := Color("#1A1A2E")
-	var mat := _shader_manager.create_trail_material(rao_color, 0.8)
+	var mat = _shader_manager.create_trail_material(rao_color, 0.8)
 
 	var trail_color: Vector3 = mat.get_shader_parameter("trail_color")
 	assert_float(trail_color.x).is_equal_approx(rao_color.r, 0.001)
@@ -80,7 +80,7 @@ func test_rao_form_uses_dark_ink_color() -> void:
 ## 游剑式 = 金色轨迹 (#D4A843)。
 func test_you_form_uses_gold_color() -> void:
 	var you_color := Color("#D4A843")
-	var mat := _shader_manager.create_trail_material(you_color, 0.8)
+	var mat = _shader_manager.create_trail_material(you_color, 0.8)
 
 	var trail_color: Vector3 = mat.get_shader_parameter("trail_color")
 	assert_float(trail_color.x).is_equal_approx(you_color.r, 0.001)
@@ -91,7 +91,7 @@ func test_you_form_uses_gold_color() -> void:
 ## 钻剑式 = 金白轨迹 (#F5E6B8)。
 func test_zuan_form_uses_gold_white_color() -> void:
 	var zuan_color := Color("#F5E6B8")
-	var mat := _shader_manager.create_trail_material(zuan_color, 0.8)
+	var mat = _shader_manager.create_trail_material(zuan_color, 0.8)
 
 	var trail_color: Vector3 = mat.get_shader_parameter("trail_color")
 	assert_float(trail_color.x).is_equal_approx(zuan_color.r, 0.001)
@@ -101,9 +101,9 @@ func test_zuan_form_uses_gold_white_color() -> void:
 
 ## 三式轨迹材质互不相同（各自独立实例）。
 func test_three_forms_use_different_materials() -> void:
-	var rao := _shader_manager.create_trail_material(Color("#1A1A2E"), 0.8)
-	var you := _shader_manager.create_trail_material(Color("#D4A843"), 0.8)
-	var zuan := _shader_manager.create_trail_material(Color("#F5E6B8"), 0.8)
+	var rao = _shader_manager.create_trail_material(Color("#1A1A2E"), 0.8)
+	var you = _shader_manager.create_trail_material(Color("#D4A843"), 0.8)
+	var zuan = _shader_manager.create_trail_material(Color("#F5E6B8"), 0.8)
 
 	assert_object(rao).is_not_same(you)
 	assert_object(you).is_not_same(zuan)
@@ -116,7 +116,7 @@ func test_three_forms_use_different_materials() -> void:
 
 ## alpha=0.0 完全透明 → 材质创建成功。
 func test_trail_material_alpha_zero() -> void:
-	var mat := _shader_manager.create_trail_material(Color("#D4A843"), 0.0)
+	var mat = _shader_manager.create_trail_material(Color("#D4A843"), 0.0)
 	assert_object(mat).is_not_null()
 	var alpha: float = mat.get_shader_parameter("trail_alpha")
 	assert_float(alpha).is_equal(0.0)
@@ -124,7 +124,7 @@ func test_trail_material_alpha_zero() -> void:
 
 ## alpha=1.0 完全不透明 → 材质创建成功。
 func test_trail_material_alpha_one() -> void:
-	var mat := _shader_manager.create_trail_material(Color("#D4A843"), 1.0)
+	var mat = _shader_manager.create_trail_material(Color("#D4A843"), 1.0)
 	assert_object(mat).is_not_null()
 	var alpha: float = mat.get_shader_parameter("trail_alpha")
 	assert_float(alpha).is_equal(1.0)
@@ -139,8 +139,8 @@ func test_same_trail_params_returns_same_instance() -> void:
 	var color := Color("#D4A843")
 	var alpha := 0.8
 
-	var mat1 := _shader_manager.create_trail_material(color, alpha)
-	var mat2 := _shader_manager.create_trail_material(color, alpha)
+	var mat1 = _shader_manager.create_trail_material(color, alpha)
+	var mat2 = _shader_manager.create_trail_material(color, alpha)
 
 	assert_object(mat1).is_same(mat2)
 
@@ -149,16 +149,16 @@ func test_same_trail_params_returns_same_instance() -> void:
 func test_different_alpha_returns_different_instance() -> void:
 	var color := Color("#D4A843")
 
-	var mat1 := _shader_manager.create_trail_material(color, 0.8)
-	var mat2 := _shader_manager.create_trail_material(color, 0.6)
+	var mat1 = _shader_manager.create_trail_material(color, 0.8)
+	var mat2 = _shader_manager.create_trail_material(color, 0.6)
 
 	assert_object(mat1).is_not_same(mat2)
 
 
 ## 不同颜色 → 返回不同实例。
 func test_different_color_returns_different_instance() -> void:
-	var mat1 := _shader_manager.create_trail_material(Color("#D4A843"), 0.8)
-	var mat2 := _shader_manager.create_trail_material(Color("#1A1A2E"), 0.8)
+	var mat1 = _shader_manager.create_trail_material(Color("#D4A843"), 0.8)
+	var mat2 = _shader_manager.create_trail_material(Color("#1A1A2E"), 0.8)
 
 	assert_object(mat1).is_not_same(mat2)
 
@@ -200,5 +200,5 @@ func test_trail_dedup_does_not_increase_draw_calls() -> void:
 		_shader_manager.create_trail_material(Color("#D4A843"), 0.8)
 
 	# 应仅有 1 个轨迹材质实例
-	var usage := _shader_manager.get_pool_usage()
+	var usage = _shader_manager.get_pool_usage()
 	assert_int(usage[0]).is_equal(1)

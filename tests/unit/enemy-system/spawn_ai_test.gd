@@ -64,13 +64,13 @@ func test_spawn_unknown_type_returns_negative_one() -> void:
 
 
 func test_spawn_emits_enemy_spawned_signal() -> void:
-	var monitor := await monitor_signals(_enemy_system)
+	var monitor = await monitor_signals(_enemy_system)
 	var enemy_id: int = _enemy_system.spawn_enemy("pine", Vector3(0, 0, 5))
 	await assert_signal(monitor).is_emitted("enemy_spawned")
 
 
 func test_spawn_all_five_types() -> void:
-	var types := ["pine", "stone", "water", "ranged", "agile"]
+	var types: Array = ["pine", "stone", "water", "ranged", "agile"]
 	for type_name in types:
 		var id: int = _enemy_system.spawn_enemy(type_name, Vector3.ZERO)
 		assert_int(id).is_greater_equal(0)
@@ -96,7 +96,7 @@ func test_idle_to_approach_when_player_in_perception() -> void:
 
 func test_approach_emits_state_changed_signal() -> void:
 	var enemy_id: int = _enemy_system.spawn_enemy("pine", Vector3(5, 0, 0))
-	var monitor := await monitor_signals(_enemy_system)
+	var monitor = await monitor_signals(_enemy_system)
 	_enemy_system.update_enemy_ai(enemy_id, 0.016)
 	await assert_signal(monitor).is_emitted("enemy_state_changed")
 
@@ -150,7 +150,7 @@ func test_approach_to_attack_when_in_range() -> void:
 
 func test_attack_emits_attack_hitbox_created_signal() -> void:
 	var enemy_id: int = _enemy_system.spawn_enemy("pine", Vector3(1.5, 0, 0))
-	var monitor := await monitor_signals(_enemy_system)
+	var monitor = await monitor_signals(_enemy_system)
 	# IDLE → APPROACH
 	_enemy_system.update_enemy_ai(enemy_id, 0.016)
 	# APPROACH → ATTACK

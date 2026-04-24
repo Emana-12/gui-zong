@@ -76,7 +76,7 @@ func test_loop_instances_initial_empty() -> void:
 
 ## 验证 BGM 缓存初始为空
 func test_bgm_cache_initial_empty() -> void:
-	var preloaded := _audio_manager.get_preloaded_bgm()
+	var preloaded = _audio_manager.get_preloaded_bgm()
 	assert_int(preloaded.size()).is_equal(0)
 
 
@@ -88,5 +88,5 @@ func test_play_bgm_missing_file_no_crash() -> void:
 
 ## 验证 _get_or_load_bgm 对不存在文件返回 null
 func test_get_or_load_bgm_missing_returns_null() -> void:
-	var result := _audio_manager._get_or_load_bgm(&"nonexistent_bgm")
+	var result = _audio_manager._get_or_load_bgm(&"nonexistent_bgm")
 	assert_object(result).is_null()

@@ -48,7 +48,7 @@ func test_execute_rao_form_returns_true() -> void:
 
 ## AC-4: form_activated 信号在执行时发出
 func test_execute_form_emits_form_activated_signal() -> void:
-	var monitor := await monitor_signals(_combat)
+	var monitor = await monitor_signals(_combat)
 	_combat.execute_form(ThreeFormsCombat.Form.YOU)
 	await assert_signal(monitor).is_emitted("form_activated", [ThreeFormsCombat.Form.YOU])
 
@@ -116,7 +116,7 @@ func test_phase_transitions_to_recovering() -> void:
 
 ## form_finished 信号在 COOLDOWN 开始时发出
 func test_form_finished_emitted_on_cooldown() -> void:
-	var monitor := await monitor_signals(_combat)
+	var monitor = await monitor_signals(_combat)
 	_combat.execute_form(ThreeFormsCombat.Form.ZUAN)
 	_combat._test_advance_phase()  # EXECUTING → RECOVERING
 	_combat._test_advance_phase()  # RECOVERING → COOLDOWN

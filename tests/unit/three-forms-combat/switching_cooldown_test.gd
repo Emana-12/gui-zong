@@ -84,7 +84,7 @@ func test_execute_during_recovering_enters_executing() -> void:
 func test_execute_during_recovering_emits_form_activated() -> void:
 	_combat.execute_form(ThreeFormsCombat.Form.YOU)
 	_combat._test_advance_phase()  # EXECUTING → RECOVERING
-	var monitor := await monitor_signals(_combat)
+	var monitor = await monitor_signals(_combat)
 	_combat.execute_form(ThreeFormsCombat.Form.ZUAN)
 	await assert_signal(monitor).is_emitted("form_activated", [ThreeFormsCombat.Form.ZUAN])
 

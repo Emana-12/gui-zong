@@ -42,7 +42,7 @@ func test_hitbox_budget_within_limit() -> void:
 	# 创建 18 个 hitbox（池的最大容量）
 	var created_ids: Array[int] = []
 	for i in range(PhysicsCollisionSystem.MAX_HITBOXES):
-		var id := _system.create_hitbox(owner, shape, Vector3(i, 0, 0), Vector3.ZERO)
+		var id = _system.create_hitbox(owner, shape, Vector3(i, 0, 0), Vector3.ZERO)
 		assert_int(id).is_greater_equal(0)
 		created_ids.append(id)
 
@@ -65,7 +65,7 @@ func test_hitbox_budget_overflow_returns_negative() -> void:
 		_system.create_hitbox(owner, shape, Vector3(i, 0, 0), Vector3.ZERO)
 
 	# 第 19 个应失败
-	var overflow_id := _system.create_hitbox(owner, shape, Vector3(99, 0, 0), Vector3.ZERO)
+	var overflow_id = _system.create_hitbox(owner, shape, Vector3(99, 0, 0), Vector3.ZERO)
 	assert_int(overflow_id).is_equal(-1)
 	assert_int(_system.get_active_hitbox_count()).is_equal(PhysicsCollisionSystem.MAX_HITBOXES)
 
@@ -89,17 +89,17 @@ func test_hitbox_budget_mixed_scenario() -> void:
 
 	# 3 player hitboxes
 	for i in range(3):
-		var id := _system.create_hitbox(player_owner, shape, Vector3(i, 0, 0), Vector3.ZERO)
+		var id = _system.create_hitbox(player_owner, shape, Vector3(i, 0, 0), Vector3.ZERO)
 		created_ids.append(id)
 
 	# 10 enemy hitboxes
 	for i in range(10):
-		var id := _system.create_hitbox(enemy_owner, shape, Vector3(i, 1, 0), Vector3.ZERO)
+		var id = _system.create_hitbox(enemy_owner, shape, Vector3(i, 1, 0), Vector3.ZERO)
 		created_ids.append(id)
 
 	# 5 attack hitboxes
 	for i in range(5):
-		var id := _system.create_hitbox(attack_owner, shape, Vector3(i, 2, 0), Vector3.ZERO)
+		var id = _system.create_hitbox(attack_owner, shape, Vector3(i, 2, 0), Vector3.ZERO)
 		created_ids.append(id)
 
 	assert_int(_system.get_active_hitbox_count()).is_equal(PhysicsCollisionSystem.MAX_HITBOXES)
@@ -123,7 +123,7 @@ func test_hitbox_destroy_frees_capacity() -> void:
 
 	var created_ids: Array[int] = []
 	for i in range(PhysicsCollisionSystem.MAX_HITBOXES):
-		var id := _system.create_hitbox(owner, shape, Vector3(i, 0, 0), Vector3.ZERO)
+		var id = _system.create_hitbox(owner, shape, Vector3(i, 0, 0), Vector3.ZERO)
 		created_ids.append(id)
 
 	# 销毁前 5 个
@@ -137,7 +137,7 @@ func test_hitbox_destroy_frees_capacity() -> void:
 	assert_int(_system.get_remaining_hitbox_capacity()).is_equal(5)
 
 	# 确认可以重新创建
-	var new_id := _system.create_hitbox(owner, shape, Vector3(100, 0, 0), Vector3.ZERO)
+	var new_id = _system.create_hitbox(owner, shape, Vector3(100, 0, 0), Vector3.ZERO)
 	assert_int(new_id).is_greater_equal(0)
 	assert_int(_system.get_active_hitbox_count()).is_equal(PhysicsCollisionSystem.MAX_HITBOXES - 5 + 1)
 
@@ -163,7 +163,7 @@ func test_hitbox_pool_reuse() -> void:
 	await get_tree().physics_frame
 
 	# 重新创建 — 应复用池中的槽位
-	var new_id := _system.create_hitbox(owner, shape, Vector3.ZERO, Vector3.ZERO)
+	var new_id = _system.create_hitbox(owner, shape, Vector3.ZERO, Vector3.ZERO)
 	assert_int(new_id).is_greater_equal(0)
 	assert_int(_system.get_active_hitbox_count()).is_equal(1)
 

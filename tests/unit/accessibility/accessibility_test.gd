@@ -44,13 +44,13 @@ func test_set_sfx_volume_clamps_to_range() -> void:
 
 
 func test_set_music_volume_emits_signal() -> void:
-	var signal_monitor := monitor_signals(_manager)
+	var signal_monitor = monitor_signals(_manager)
 	_manager.set_music_volume(60.0)
 	assert_signal(signal_monitor).is_emitted("volume_changed", ["Music", 60.0])
 
 
 func test_set_sfx_volume_emits_signal() -> void:
-	var signal_monitor := monitor_signals(_manager)
+	var signal_monitor = monitor_signals(_manager)
 	_manager.set_sfx_volume(80.0)
 	assert_signal(signal_monitor).is_emitted("volume_changed", ["SFX", 80.0])
 
@@ -71,7 +71,7 @@ func test_set_reduced_motion_disables() -> void:
 
 
 func test_motion_reduction_emits_signal() -> void:
-	var signal_monitor := monitor_signals(_manager)
+	var signal_monitor = monitor_signals(_manager)
 	_manager.set_reduced_motion(true)
 	assert_signal(signal_monitor).is_emitted("motion_reduction_changed", [true])
 
@@ -92,7 +92,7 @@ func test_set_flash_reduction_disables() -> void:
 
 
 func test_flash_reduction_emits_signal() -> void:
-	var signal_monitor := monitor_signals(_manager)
+	var signal_monitor = monitor_signals(_manager)
 	_manager.set_flash_reduction(true)
 	assert_signal(signal_monitor).is_emitted("flash_reduction_changed", [true])
 
@@ -113,7 +113,7 @@ func test_set_hold_to_toggle_disables() -> void:
 
 
 func test_hold_to_toggle_emits_signal() -> void:
-	var signal_monitor := monitor_signals(_manager)
+	var signal_monitor = monitor_signals(_manager)
 	_manager.set_hold_to_toggle(true)
 	assert_signal(signal_monitor).is_emitted("hold_to_toggle_changed", [true])
 
@@ -132,7 +132,7 @@ func test_set_brightness_clamps_to_range() -> void:
 
 
 func test_set_brightness_emits_signal() -> void:
-	var signal_monitor := monitor_signals(_manager)
+	var signal_monitor = monitor_signals(_manager)
 	_manager.set_brightness(0.15)
 	assert_signal(signal_monitor).is_emitted("brightness_changed", [0.15])
 
@@ -141,20 +141,20 @@ func test_set_brightness_emits_signal() -> void:
 
 func test_check_photosensitivity_warning_first_time() -> void:
 	_manager.photosensitivity_acknowledged = false
-	var signal_monitor := monitor_signals(_manager)
-	var result := _manager.check_photosensitivity_warning()
+	var signal_monitor = monitor_signals(_manager)
+	var result = _manager.check_photosensitivity_warning()
 	assert_bool(result).is_true()
 	assert_signal(signal_monitor).is_emitted("photosensitivity_warning_shown")
 
 
 func test_check_photosensitivity_warning_acknowledged() -> void:
 	_manager.photosensitivity_acknowledged = true
-	var result := _manager.check_photosensitivity_warning()
+	var result = _manager.check_photosensitivity_warning()
 	assert_bool(result).is_false()
 
 
 func test_acknowledge_photosensitivity_warning() -> void:
-	var signal_monitor := monitor_signals(_manager)
+	var signal_monitor = monitor_signals(_manager)
 	_manager.acknowledge_photosensitivity_warning()
 	assert_bool(_manager.photosensitivity_acknowledged).is_true()
 	assert_signal(signal_monitor).is_emitted("photosensitivity_warning_dismissed")

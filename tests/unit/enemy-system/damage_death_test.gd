@@ -56,7 +56,7 @@ func test_take_damage_hit_stun_duration_is_0_3s() -> void:
 
 func test_take_damage_emits_state_changed_signal() -> void:
 	var enemy_id: int = _enemy_system.spawn_enemy("pine", Vector3(5, 0, 0))
-	var monitor := await monitor_signals(_enemy_system)
+	var monitor = await monitor_signals(_enemy_system)
 	_enemy_system.take_damage(enemy_id, 1)
 	await assert_signal(monitor).is_emitted("enemy_state_changed")
 
@@ -83,14 +83,14 @@ func test_take_damage_kills_enemy_when_exceeding_hp() -> void:
 
 func test_take_damage_emits_enemy_died_signal() -> void:
 	var enemy_id: int = _enemy_system.spawn_enemy("pine", Vector3(5, 0, 0))
-	var monitor := await monitor_signals(_enemy_system)
+	var monitor = await monitor_signals(_enemy_system)
 	_enemy_system.take_damage(enemy_id, 5)
 	await assert_signal(monitor).is_emitted("enemy_died")
 
 
 func test_take_damage_enemy_died_not_emitted_on_survive() -> void:
 	var enemy_id: int = _enemy_system.spawn_enemy("pine", Vector3(5, 0, 0))
-	var monitor := await monitor_signals(_enemy_system)
+	var monitor = await monitor_signals(_enemy_system)
 	_enemy_system.take_damage(enemy_id, 2)  # HP 5→3, not dead
 	# enemy_died 不应触发
 	assert_bool(_enemy_system.is_alive(enemy_id)).is_true()
